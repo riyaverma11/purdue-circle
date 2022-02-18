@@ -1,0 +1,13 @@
+@media all and (min-width: 480px) {
+    .Login {
+      padding: 60px 0;
+      font-family: "Gill Sans", sans-serif;
+    }
+  
+    .Login form {
+      margin: 0 auto;
+      max-width: 420px;
+
+    }
+ 
+  }
