@@ -1,81 +1,40 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useFormFields } from "../lib/hooksLib";
 import "./Signup.css";
 
 export default function Signup() {
+  /*
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  */
   const [fields, handleFieldChange] = useFormFields({
     email: "",
     password: "",
     confirmPassword: "",
-    confirmationCode: "",
+    username: ""
   });
-  const history = useHistory();
-  const [newUser, setNewUser] = useState(null);
-  const { userHasAuthenticated } = useAppContext();
-  const [isLoading, setIsLoading] = useState(false);
 
   function validateForm() {
     return (
-      fields.email.length > 0 &&
-      fields.password.length > 0 &&
-      fields.password === fields.confirmPassword
-    );
+      fields.email.length > 0 && 
+      fields.password.length > 8 && fields.password.length <= 16 && 
+      fields.confirmPassword.length > 8 && fields.confirmPassword.length <= 16 &&
+      fields.password.length === fields.confirmPassword.length &&
+      fields.username.length <= 16
+      );
   }
 
-  function validateConfirmationForm() {
-    return fields.confirmationCode.length > 0;
-  }
-
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-
-    setIsLoading(true);
-
-    setNewUser("test");
-
-    setIsLoading(false);
   }
 
-  async function handleConfirmationSubmit(event) {
-    event.preventDefault();
-
-    setIsLoading(true);
-  }
-
-  /*
-  function renderConfirmationForm() {
-    return (
-      <Form onSubmit={handleConfirmationSubmit}>
-        <Form.Group controlId="confirmationCode" size="lg">
-          <Form.Label>Confirmation Code</Form.Label>
-          <Form.Control
-            autoFocus
-            type="tel"
-            onChange={handleFieldChange}
-            value={fields.confirmationCode}
-          />
-          <Form.Text muted>Please check your email for the code.</Form.Text>
-        </Form.Group>
-        <LoaderButton
-          block
-          size="lg"
-          type="submit"
-          variant="success"
-          isLoading={isLoading}
-          disabled={!validateConfirmationForm()}
-        >
-          Verify
-        </LoaderButton>
-      </Form>
-    );
-  }
-  */
-
-  function renderForm() {
-    return (
+  return (
+    <div className="Signup">
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="email" size="lg">
+        <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             autoFocus
@@ -84,7 +43,8 @@ export default function Signup() {
             onChange={handleFieldChange}
           />
         </Form.Group>
-        <Form.Group controlId="password" size="lg">
+
+        <Form.Group size="lg" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -92,25 +52,26 @@ export default function Signup() {
             onChange={handleFieldChange}
           />
         </Form.Group>
-        <Form.Group controlId="confirmPassword" size="lg">
+        <Form.Group size="lg" controlId="confirmPassword">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            onChange={handleFieldChange}
             value={fields.confirmPassword}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="username"
+            value={fields.username}
+            onChange={handleFieldChange}
           />
         </Form.Group>
         <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Signup
+          Sign Up!
         </Button>
       </Form>
-    );
-  }
-  /*
-  return (
-    <div className="Signup">
-      {newUser === null ? renderForm() : renderConfirmationForm()}
     </div>
   );
-  */
 }
