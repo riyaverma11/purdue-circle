@@ -8,7 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return email.length > 0 && password.length > 8 && password.length <= 16;
   }
 
   function handleSubmit(event) {

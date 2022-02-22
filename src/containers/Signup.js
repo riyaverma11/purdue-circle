@@ -10,21 +10,42 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   */
-  const [fields, handleFieldChange] = useFormFields({
+  const [user, setUser] = useFormFields({
     email: "",
     password: "",
     confirmPassword: "",
-    username: ""
+    username: "",
+    age: 0
   });
 
-  function validateForm() {
+  function validateEmail() {
     return (
-      fields.email.length > 0 && 
-      fields.password.length > 8 && fields.password.length <= 16 && 
-      fields.confirmPassword.length > 8 && fields.confirmPassword.length <= 16 &&
-      fields.password.length === fields.confirmPassword.length &&
-      fields.username.length <= 16
+      user.email.length > 0 
+      //user.password.length > 8 && user.password.length <= 16 && 
+      //user.confirmPassword.length > 8 && user.confirmPassword.length <= 16 &&
+      //user.password.length === user.confirmPassword.length &&
+      //user.username.length <= 16
       );
+  }
+
+  function validatePassword() {
+    return (
+      user.password.length > 8 && user.password.length <= 16 &&
+      user.confirmPassword.length > 8 && user.confirmPassword.length <= 16 &&
+      user.password.length === user.confirmPassword.length
+    );
+  }
+
+  function validateUsername() {
+    return (
+      user.username.length <= 16
+    );
+  }
+
+  function validateAge() {
+    return (
+      user.age >= 17
+    );
   }
 
   function handleSubmit(event) {
@@ -39,8 +60,8 @@ export default function Signup() {
           <Form.Control
             autoFocus
             type="email"
-            value={fields.email}
-            onChange={handleFieldChange}
+            value={user.email}
+            onChange={setUser}
           />
         </Form.Group>
 
@@ -48,27 +69,42 @@ export default function Signup() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            value={fields.password}
-            onChange={handleFieldChange}
+            value={user.password}
+            required
+            onChange={setUser}
           />
         </Form.Group>
         <Form.Group size="lg" controlId="confirmPassword">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            value={fields.confirmPassword}
-            onChange={handleFieldChange}
+            value={user.confirmPassword}
+            required
+            onChange={setUser}
           />
         </Form.Group>
         <Form.Group size="lg" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="username"
-            value={fields.username}
-            onChange={handleFieldChange}
+            value={user.username}
+            requierd
+            onChange={setUser}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
+        <Form.Group size="lg" controlId="age">
+          <Form.Label>Age</Form.Label>
+          <Form.Control
+            type="age"
+            step="1.0"
+            min={17}
+            value={user.age}
+            required
+            onChange={setUser}
+          />
+        </Form.Group>
+        <Button block size="lg" type="submit" 
+        disabled={!validateEmail() && !validatePassword() && !validateUsername() && !validateAge()}>
           Sign Up!
         </Button>
       </Form>
