@@ -60,6 +60,7 @@ export default function Signup() {
           <Form.Control
             autoFocus
             type="email"
+            required
             value={user.email}
             onChange={setUser}
           />
@@ -88,7 +89,7 @@ export default function Signup() {
           <Form.Control
             type="username"
             value={user.username}
-            requierd
+            required
             onChange={setUser}
           />
         </Form.Group>
