@@ -10,7 +10,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   function validateForm() {
-    return email.length > 0 && password.length > 8 && password.length <= 16;
+    return email.length > 0 && password.length > 0;
+  }
+
+  function validatePassword(){
+    return password.length > 8 && password.length <= 16;
   }
 
   function handleSubmit(event) {
@@ -28,6 +32,7 @@ export default function Login() {
             autoFocus
             type="email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
@@ -36,6 +41,7 @@ export default function Login() {
           <Form.Control
             type="password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
