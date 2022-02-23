@@ -18,7 +18,7 @@ export default function Profile() {
     bio: ""
   });
 
-  function validateBio() {
+  function validateBioo() {
       return (
           user.bio.length > 0 && user.bio.length < 100
       );
@@ -101,7 +101,7 @@ export default function Profile() {
           />
         </Form.Group>
         <Button block size="lg" type="submit" 
-        disabled={!validateBio() && !validatePassword() && !validateUsername() && !validateAge()}>
+        disabled={!validateBioo() && !validatePassword() && !validateUsername() && !validateAge()}>
           Submit Changes!
         </Button>
       </Form>
