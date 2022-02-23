@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Login.css";
 
+
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +15,8 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    window.location.href="/feed";
+    window.isAuthenticated = 1;
   }
 
   return (

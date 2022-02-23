@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useFormFields } from "../lib/hooksLib";
 import "./Profile.css";
+import userProfileImg from "../defaultPicture.jpg"
 
 export default function Profile() {
   /*
@@ -50,8 +51,10 @@ export default function Profile() {
 
   return (
     <div className="Profile">
+        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <img src={userProfileImg} alt = "User Profile Image"/>
+        </div>
       <Form onSubmit={handleSubmit}>
-
 
         <Form.Group size="lg" controlId="password">
           <Form.Label>Password</Form.Label>
