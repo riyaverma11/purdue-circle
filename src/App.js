@@ -10,7 +10,7 @@ let isAuthenticated = 0;
 function App() {
   
   let NavBar;
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     NavBar = (<>
             <LinkContainer to="/">
           <Navbar.Brand className="font-weight-bold text-muted">
@@ -31,6 +31,9 @@ function App() {
             </LinkContainer>
             <LinkContainer to="/deleteProf">
               <Nav.Link>Delete Profile</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/Prof">
+              <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

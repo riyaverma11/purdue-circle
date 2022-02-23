@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useFormFields } from "../lib/hooksLib";
 import "./EditProfile.css";
-import userProfileImg from "../defaultPicture.jpg"
+import userProfileImg from "../riya.jpeg"
 
 export default function EditProfile() {
   /*
@@ -52,7 +52,7 @@ export default function EditProfile() {
   return (
     <div className="EditProfile">
         <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <img src={userProfileImg} alt = "User Profile Image"/>
+            <img src={userProfileImg} alt = "User Profile Image" width = "300"/>
         </div>
       <Form onSubmit={handleSubmit}>
 
