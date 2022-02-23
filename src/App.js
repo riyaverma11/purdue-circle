@@ -23,7 +23,7 @@ function App() {
             <LinkContainer to="/feed">
               <Nav.Link>Feed</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/profile">
+            <LinkContainer to="/editProf">
               <Nav.Link>Edit Profile</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/logout">

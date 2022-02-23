@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useFormFields } from "../lib/hooksLib";
-import "./Profile.css";
+import "./EditProfile.css";
 import userProfileImg from "../defaultPicture.jpg"
 
-export default function Profile() {
+export default function EditProfile() {
   /*
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,7 +50,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="Profile">
+    <div className="EditProfile">
         <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
             <img src={userProfileImg} alt = "User Profile Image"/>
         </div>
