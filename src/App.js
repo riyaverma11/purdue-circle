@@ -26,6 +26,12 @@ function App() {
             <LinkContainer to="/profile">
               <Nav.Link>Edit Profile</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/logout">
+              <Nav.Link>Logout</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/deleteProf">
+              <Nav.Link>Delete Profile</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
     </>)

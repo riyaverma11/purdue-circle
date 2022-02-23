@@ -24,6 +24,12 @@ export default function Routes() {
       <Route exact path="/feed">
          <Feed />
       </Route>
+      <Route exact path="/logout">
+         <Login />
+      </Route>
+      <Route exact path="/deleteProf">
+         <Signup />
+      </Route>
     </Switch>
   );
 }
