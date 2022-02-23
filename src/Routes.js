@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
+import Profile from "./containers/Profile";
 
 export default function Routes() {
   return (
@@ -16,6 +17,10 @@ export default function Routes() {
       <Route exact path="/signup">
          <Signup />
       </Route>
+      <Route exact path="/profile">
+         <Profile />
+      </Route>
     </Switch>
   );
 }
+
