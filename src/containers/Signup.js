@@ -10,6 +10,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   */
+
   let emailError = "";
   const [user, setUser] = useFormFields({
     email: "",
@@ -26,12 +27,12 @@ export default function Signup() {
   const [validA, setValidA] = useState(0);
 
   function validateEmail() {
-    if (user.email.length == 0) {
+    if (user.email.length === 0) {
       document.getElementById("emailError").innerHTML = "Please enter an email address!";
       console.log("lol");
       setValidE(0);
     }
-    else if (!user.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+    else if (!user.email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
       console.log("lol 2");
       setValidE(0);
       document.getElementById("emailError").innerHTML = "Please enter a valid email address!";
@@ -45,7 +46,7 @@ export default function Signup() {
   function validatePassword() {
     // add regex check
     // var re = ^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$;
-    if (user.password.length == 0) {
+    if (user.password.length === 0) {
       document.getElementById("passError").innerHTML = "Please enter password!";
       console.log("here");
       setValidP(0);
@@ -62,12 +63,12 @@ export default function Signup() {
   }
 
   function validateConfirmPassword() {
-    if (user.confirmPassword.length == 0) {
+    if (user.confirmPassword.length === 0) {
       document.getElementById("confirmPassError").innerHTML = "Please enter password again!";
       console.log("here");
       setValidC(0);
     }
-    else if (user.confirmPassword != user.password) {
+    else if (user.confirmPassword !== user.password) {
       document.getElementById("confirmPassError").innerHTML = "Please enter matching password!";
       console.log("here 2");
       setValidC(0);
@@ -79,7 +80,7 @@ export default function Signup() {
   }
 
   function validateUsername() {
-    if (user.username.length == 0) {
+    if (user.username.length === 0) {
       document.getElementById("unameError").innerHTML = "Please enter username!";
       console.log("here");
       setValidU(0);
@@ -96,7 +97,7 @@ export default function Signup() {
   }
 
   function validateAge() {
-    if (user.age.length == 0) {
+    if (user.age.length === 0) {
       document.getElementById("ageError").innerHTML = "Please enter age!";
       console.log("here");
       setValidA(0);
@@ -114,7 +115,7 @@ export default function Signup() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if((validA+validC+validE+validP+validU) == 5) {
+    if((validA+validC+validE+validP+validU) === 5) {
       window.location.href = "/login";
     } else if ((validA+validC+validE+validP+validU) < 5) {
       document.getElementById("overallError").innerHTML = "Please fill all fields!";

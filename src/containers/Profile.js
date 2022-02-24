@@ -10,6 +10,7 @@ export default function Profile() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   */
+  
   const [user, setUser] = useFormFields({
     username: "",
     age: 0,

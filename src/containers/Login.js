@@ -11,12 +11,12 @@ export default function Login() {
   localStorage.setItem("isAuthenticated", 0);
 
   function validateEmail() {
-    if (email.length == 0) {
+    if (email.length === 0) {
       document.getElementById("emailError").innerHTML = "Please enter an email address!";
       console.log("lol");
       setValidE(0);
     }
-    else if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+    else if (!email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
       console.log("lol 2");
       setValidE(0);
       document.getElementById("emailError").innerHTML = "Please enter a valid email address!";
@@ -30,7 +30,7 @@ export default function Login() {
   function validatePassword() {
     // add regex check
     // var re = ^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$;
-    if (password.length == 0) {
+    if (password.length === 0) {
       document.getElementById("passError").innerHTML = "Please enter password!";
       console.log("here");
       setValidP(0);
@@ -48,9 +48,9 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if((validE + validP) == 2 ) {
-    localStorage.setItem("isAuthenticated", 1);
-    window.location.href = "/feed";
+    if((validE + validP) === 2 ) {
+      localStorage.setItem("isAuthenticated", 1);
+      window.location.href = "/feed";
     } else if((validE+validP) < 2) {
       document.getElementById("overallError").innerHTML = "Please fill all fields!";
     } else {
