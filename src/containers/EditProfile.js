@@ -11,42 +11,98 @@ export default function EditProfile() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   */
+
+  const [validP, setValidP] = useState(0);
+  const [validC, setValidC] = useState(0);
+  const [validU, setValidU] = useState(0);
+  const [validB, setValidB] = useState(0);
+
   const [user, setUser] = useFormFields({
     password: "",
     confirmPassword: "",
     username: "",
-    age: 0,
     bio: ""
   });
 
   function validateBio() {
-      return (
-          user.bio.length > 0 && user.bio.length < 100
-      );
+    if (user.bio.length == 0) {
+      document.getElementById("bioError").innerHTML = "Please enter a bio!";
+      console.log("here");
+      setValidB(0);
+    }
+    else if (user.bio.length > 100) {
+      document.getElementById("bioError").innerHTML = "Bio length exceeds limit!";
+      console.log("here 2");
+      setValidB(0);
+    }
+    else {
+      document.getElementById("bioError").innerHTML = "";
+      setValidB(1);
+    }
   }
 
   function validatePassword() {
-    return (
-      user.password.length > 8 && user.password.length <= 16 &&
-      user.confirmPassword.length > 8 && user.confirmPassword.length <= 16 &&
-      user.password.length === user.confirmPassword.length
-    );
+    // add regex check
+    // var re = ^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$;
+    if (user.password.length == 0) {
+      document.getElementById("passError").innerHTML = "Please enter password!";
+      console.log("here");
+      setValidP(0);
+    }
+    else if (!((user.password.length >= 8 && user.password.length <= 16) && (user.password.match(/(?=.*[^a-zA-Z0-9])/) && !(/\s/g.test(user.password))))) {
+      document.getElementById("passError").innerHTML = "Please enter a valid password!";
+      console.log("here 2");
+      setValidP(0);
+    }
+    else {
+      document.getElementById("passError").innerHTML = "";
+      setValidP(1);
+    }
+  }
+
+  function validateConfirmPassword() {
+    if (user.confirmPassword.length == 0) {
+      document.getElementById("confirmPassError").innerHTML = "Please enter password again!";
+      console.log("here");
+      setValidC(0);
+    }
+    else if (user.confirmPassword != user.password) {
+      document.getElementById("confirmPassError").innerHTML = "Please enter matching password!";
+      console.log("here 2");
+      setValidC(0);
+    }
+    else {
+      document.getElementById("confirmPassError").innerHTML = "";
+      setValidC(1);
+    }
   }
 
   function validateUsername() {
-    return (
-      user.username.length <= 16
-    );
-  }
-
-  function validateAge() {
-    return (
-      user.age >= 17
-    );
+    if (user.username.length == 0) {
+      document.getElementById("unameError").innerHTML = "Please enter username!";
+      console.log("here");
+      setValidU(0);
+    }
+    else if (!((user.username.length <= 16) && !(/\s/g.test(user.username)))) {
+      document.getElementById("unameError").innerHTML = "Please enter valid username!";
+      console.log("here 2");
+      setValidU(0);
+    }
+    else {
+      document.getElementById("unameError").innerHTML = "";
+      setValidU(1);
+    }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    if((validC+validB+validP+validU) == 4) {
+      window.location.href = "/Prof";
+    } else if ((validB+validC+validP+validU) < 4) {
+      document.getElementById("overallError").innerHTML = "Please fill all fields!";
+    } else {
+      document.getElementById("overallError").innerHTML = "";
+    }
   }
 
   return (
@@ -56,57 +112,59 @@ export default function EditProfile() {
         </div>
       <Form onSubmit={handleSubmit}>
 
-        <Form.Group size="lg" controlId="password">
+      <Form.Group size="lg" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             value={user.password}
-            required
             onChange={setUser}
+            onBlur={validatePassword}
           />
+          <div id = "passError" style = {{"color": "red"}}></div>
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Your password must be 8-16 characters long and have at least special character and must not contain spaces.
+          </small>
         </Form.Group>
         <Form.Group size="lg" controlId="confirmPassword">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
             value={user.confirmPassword}
-            required
             onChange={setUser}
+            onBlur={validateConfirmPassword}
           />
+          <div id = "confirmPassError" style = {{"color": "red"}}></div>
         </Form.Group>
         <Form.Group size="lg" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="username"
             value={user.username}
-            requierd
             onChange={setUser}
+            onBlur={validateUsername}
           />
+          <div id = "unameError" style = {{"color": "red"}}></div>
+          <small id="unameHelpBlock" class="form-text text-muted">
+            Username length is restricted to 16 characters.
+          </small>
         </Form.Group>
-        <Form.Group size="lg" controlId="age">
-          <Form.Label>Age</Form.Label>
-          <Form.Control
-            type="age"
-            step="1.0"
-            min={17}
-            value={user.age}
-            required
-            onChange={setUser}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="Bio">
+        <Form.Group size="lg" controlId="bio">
           <Form.Label>Bio</Form.Label>
           <Form.Control
-            autoFocus
-            type="bio"
+            type="text"
             value={user.bio}
             onChange={setUser}
+            onBlur={validateBio}
           />
+          <div id = "bioError" style = {{"color": "red"}}></div>
+          <small id="BioHelpBlock" class="form-text text-muted">
+            Bio must be within 100 characters.
+          </small>
         </Form.Group>
-        <Button block size="lg" type="submit" 
-        disabled={!validateBio() && !validatePassword() && !validateUsername() && !validateAge()}>
+        <Button block size="lg" type="submit" >
           Submit Changes!
         </Button>
+        <div id = "overallError" style = {{"color": "red"}}></div>
       </Form>
     </div>
   );
