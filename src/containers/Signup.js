@@ -10,6 +10,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   */
+  let emailError = "";
   const [user, setUser] = useFormFields({
     email: "",
     password: "",
@@ -19,21 +20,37 @@ export default function Signup() {
   });
 
   function validateEmail() {
-    return (
-      user.email.length > 0 
-      //user.password.length > 8 && user.password.length <= 16 && 
-      //user.confirmPassword.length > 8 && user.confirmPassword.length <= 16 &&
-      //user.password.length === user.confirmPassword.length &&
-      //user.username.length <= 16
-      );
+    if (user.email.length == 0) {
+      document.getElementById("emailError").innerHTML = "Please enter an email address!";
+      console.log("lol");
+    }
+    else if (!user.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+      console.log("lol 2");
+      document.getElementById("emailError").innerHTML = "Please enter a valid email address!";
+    }
+    else {
+      document.getElementById("emailError").innerHTML = "";
+    }
   }
 
   function validatePassword() {
-    return (
-      user.password.length > 8 && user.password.length <= 16 &&
-      user.confirmPassword.length > 8 && user.confirmPassword.length <= 16 &&
-      user.password.length === user.confirmPassword.length
-    );
+    // add regex check
+    // var re = ^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$;
+    if (user.password.length == 0) {
+      document.getElementById("passError").innerHTML = "Please enter password!";
+      console.log("here");
+    }
+    else if (user.password.match()) {
+      document.getElementById("passError").innerHTML = "Please enter a valid password!";
+      console.log("here 2");
+    }
+    else {
+      document.getElementById("passError").innerHTML = "";
+    }
+    // return (
+    //   user.password.length > 8 && user.password.length <= 16 &&
+    //   user.password === user.confirmPassword
+    // );
   }
 
   function validateUsername() {
@@ -44,12 +61,13 @@ export default function Signup() {
 
   function validateAge() {
     return (
-      user.age >= 17
+      user.age >= 17 && user.age <= 110
     );
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    // console.log(user);
   }
 
   return (
@@ -59,12 +77,14 @@ export default function Signup() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
-            required
+            type="text"
             placeholder="name@example.com"
             value={user.email}
             onChange={setUser}
+            onBlur={validateEmail}
           />
+          <div id = "emailError" style = {{"color": "red"}}></div>
+          {/* <div id="emailError"></div> */}
         </Form.Group>
 
         <Form.Group size="lg" controlId="password">
@@ -72,10 +92,10 @@ export default function Signup() {
           <Form.Control
             type="password"
             value={user.password}
-            required
-            
             onChange={setUser}
+            onBlur={validatePassword}
           />
+          <div id = "passError" style = {{"color": "red"}}></div>
           <small id="passwordHelpBlock" class="form-text text-muted">
             Your password must be 8-16 characters long and have at least special character and must not contain spaces or emojis.
           </small>
@@ -88,6 +108,7 @@ export default function Signup() {
             required
             onChange={setUser}
           />
+          <div id = "confirmPassError" style = {{"color": "red"}}></div>
         </Form.Group>
         <Form.Group size="lg" controlId="username">
           <Form.Label>Username</Form.Label>
@@ -97,6 +118,7 @@ export default function Signup() {
             required
             onChange={setUser}
           />
+          <div id = "unameError" style = {{"color": "red"}}></div>
         </Form.Group>
         <Form.Group size="lg" controlId="age">
           <Form.Label>Age</Form.Label>
@@ -108,9 +130,9 @@ export default function Signup() {
             required
             onChange={setUser}
           />
+          <div id = "ageError" style = {{"color": "red"}}></div>
         </Form.Group>
-        <Button block size="lg" type="submit" 
-        disabled={!validateEmail() && !validatePassword() && !validateUsername() && !validateAge()}>
+        <Button block size="lg" type="submit">
           Sign Up!
         </Button>
       </Form>

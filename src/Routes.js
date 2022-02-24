@@ -7,6 +7,7 @@ import Logout from "./containers/Logout";
 import EditProfile from "./containers/EditProfile";
 import Feed from "./containers/Feed";
 import Profile from "./containers/Profile";
+import DeleteProfile from "./containers/DeleteProfile";
 
 export default function Routes() {
   return (
@@ -30,7 +31,7 @@ export default function Routes() {
          <Logout />
       </Route>
       <Route exact path="/deleteProf">
-         <Signup />
+         <DeleteProfile />
       </Route>
       <Route exact path="/Prof">
          <Profile />
