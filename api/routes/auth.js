@@ -28,8 +28,14 @@ router.post("/register", async (req,res)=>{ // had this as get before
 
 
         // save user and respond
-        const user = await newUser.save();
-        return res.status(200).json(user); // send success (200)
+        const existingUser = await User.findOne({email:req.body.email});
+        if(!existingUser){ // user already is registered
+            const user = await newUser.save();
+            return res.status(200).json(user); // send success (200)
+        }else{
+            return res.status(404).json("email already registered"); // if user not found send error message
+        }
+        
     }catch(err){
         //console.log(err);
         return res.status(500).json(err);
