@@ -2,29 +2,26 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useFormFields } from "../lib/hooksLib";
-import "./Signup.css";
+import "./EditProfile.css";
+import userProfileImg from "../riya.jpeg"
 
-export default function Signup() {
+export default function EditProfile() {
   /*
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   */
   const [user, setUser] = useFormFields({
-    email: "",
     password: "",
     confirmPassword: "",
     username: "",
-    age: 0
+    age: 0,
+    bio: ""
   });
 
-  function validateEmail() {
-    return (
-      user.email.length > 0 
-      //user.password.length > 8 && user.password.length <= 16 && 
-      //user.confirmPassword.length > 8 && user.confirmPassword.length <= 16 &&
-      //user.password.length === user.confirmPassword.length &&
-      //user.username.length <= 16
+  function validateBio() {
+      return (
+          user.bio.length > 0 && user.bio.length < 100
       );
   }
 
@@ -53,19 +50,11 @@ export default function Signup() {
   }
 
   return (
-    <div className="Signup">
+    <div className="EditProfile">
+        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <img src={userProfileImg} alt = "User Profile Image" width = "300"/>
+        </div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            required
-            placeholder="name@example.com"
-            value={user.email}
-            onChange={setUser}
-          />
-        </Form.Group>
 
         <Form.Group size="lg" controlId="password">
           <Form.Label>Password</Form.Label>
@@ -73,12 +62,8 @@ export default function Signup() {
             type="password"
             value={user.password}
             required
-            
             onChange={setUser}
           />
-          <small id="passwordHelpBlock" class="form-text text-muted">
-            Your password must be 8-16 characters long and have at least special character and must not contain spaces or emojis.
-          </small>
         </Form.Group>
         <Form.Group size="lg" controlId="confirmPassword">
           <Form.Label>Confirm Password</Form.Label>
@@ -94,7 +79,7 @@ export default function Signup() {
           <Form.Control
             type="username"
             value={user.username}
-            required
+            requierd
             onChange={setUser}
           />
         </Form.Group>
@@ -109,9 +94,18 @@ export default function Signup() {
             onChange={setUser}
           />
         </Form.Group>
+        <Form.Group size="lg" controlId="Bio">
+          <Form.Label>Bio</Form.Label>
+          <Form.Control
+            autoFocus
+            type="bio"
+            value={user.bio}
+            onChange={setUser}
+          />
+        </Form.Group>
         <Button block size="lg" type="submit" 
-        disabled={!validateEmail() && !validatePassword() && !validateUsername() && !validateAge()}>
-          Sign Up!
+        disabled={!validateBio() && !validatePassword() && !validateUsername() && !validateAge()}>
+          Submit Changes!
         </Button>
       </Form>
     </div>
