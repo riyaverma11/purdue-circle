@@ -61,6 +61,7 @@ export default function Signup() {
             autoFocus
             type="email"
             required
+            placeholder="name@example.com"
             value={user.email}
             onChange={setUser}
           />
@@ -72,8 +73,12 @@ export default function Signup() {
             type="password"
             value={user.password}
             required
+            
             onChange={setUser}
           />
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Your password must be 8-16 characters long and have at least special character and must not contain spaces or emojis.
+          </small>
         </Form.Group>
         <Form.Group size="lg" controlId="confirmPassword">
           <Form.Label>Confirm Password</Form.Label>

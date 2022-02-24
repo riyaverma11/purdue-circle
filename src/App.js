@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
 import Routes from "./Routes";
-let isAuthenticated = 0;
+let isAuthenticated = 1;
 
 function App() {
   
