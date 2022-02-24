@@ -8,6 +8,7 @@ import "./Login.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  localStorage.setItem("isAuthenticated", 0);
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -19,8 +20,8 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    window.location.href="/feed";
-    window.isAuthenticated = 1;
+    localStorage.setItem("isAuthenticated", 1);
+    window.location.href = "/feed";
   }
 
   return (

@@ -5,12 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
 import Routes from "./Routes";
-let isAuthenticated = 1;
 
 function App() {
-  
+  let isAuthenticated = localStorage.getItem("isAuthenticated");
   let NavBar;
-  if (!isAuthenticated) {
+  if (isAuthenticated == 1) {
     NavBar = (<>
             <LinkContainer to="/">
           <Navbar.Brand className="font-weight-bold text-muted">

@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
+import Logout from "./containers/Logout";
 import EditProfile from "./containers/EditProfile";
 import Feed from "./containers/Feed";
 import Profile from "./containers/Profile";
@@ -26,7 +27,7 @@ export default function Routes() {
          <Feed />
       </Route>
       <Route exact path="/logout">
-         <Login />
+         <Logout />
       </Route>
       <Route exact path="/deleteProf">
          <Signup />
