@@ -53,7 +53,8 @@ router.get("/:id", async (req, res) => {
     }
    
   } catch (err) {
-    return res.status(500).json(err);
+    //return res.status(500).json(err);
+    return res.status(500).json("user does not exist!"); // this should not be how this code works yo!
   }
 });
 
