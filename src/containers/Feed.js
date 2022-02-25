@@ -2,6 +2,7 @@ import React from "react";
 import "./Feed.css";
 import userProfileImg from "../riya.jpeg"
 
+// need to move to Post() 
 export default function Feed() {
     return (
       <div className="share">
