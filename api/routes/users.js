@@ -45,8 +45,13 @@ router.delete("/:id", async (req, res) => { // check if user is allowed to updat
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    const { password, updatedAt, ...other } = user._doc;  // other is all fields but password and updatedAt
-    return res.status(200).json(other);
+    if(!user){
+      return res.status(500).json("user does not exist!");
+    }else{
+      const { password, updatedAt, ...other } = user._doc;  // other is all fields but password and updatedAt
+      return res.status(200).json(other);
+    }
+   
   } catch (err) {
     return res.status(500).json(err);
   }
