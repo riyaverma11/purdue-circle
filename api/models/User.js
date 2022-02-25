@@ -3,22 +3,27 @@ const UserSchema = new mongoose.Schema({
     username:{
         type:String, 
         required: true,
-        min: 8, // minimum 8 characters
-        max: 20, //max 20 characters
+        max: 16, //max 20 characters
         unique: true
+    },
+
+    age:{
+        type:Number,
+        min: 17,
+        max: 110
     },
 
     email:{
         type:String,
         required:true,
-        max:20,
         unique:true
     },
 
     password:{
         type: String,
         required:true,
-        min: 6
+        min: 8,
+        max: 16
     },
 
     followers:{
