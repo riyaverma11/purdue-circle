@@ -19,8 +19,14 @@ function App() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
-            <LinkContainer to="/feed">
+            <LinkContainer to="/timeline">
               <Nav.Link>Feed</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/feed">
+              <Nav.Link>+</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/Prof">
+              <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/editProf">
               <Nav.Link>Edit Profile</Nav.Link>
@@ -30,9 +36,6 @@ function App() {
             </LinkContainer>
             <LinkContainer to="/deleteProf">
               <Nav.Link>Delete Profile</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/Prof">
-              <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

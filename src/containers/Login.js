@@ -50,7 +50,7 @@ export default function Login() {
     event.preventDefault();
     if((validE + validP) === 2 ) {
       localStorage.setItem("isAuthenticated", 1);
-      window.location.href = "/feed";
+      window.location.href = "/timeline";
     } else if((validE+validP) < 2) {
       document.getElementById("overallError").innerHTML = "Please fill all fields!";
     } else {
