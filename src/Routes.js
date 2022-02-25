@@ -8,6 +8,7 @@ import EditProfile from "./containers/EditProfile";
 import Feed from "./containers/Feed";
 import Profile from "./containers/Profile";
 import DeleteProfile from "./containers/DeleteProfile";
+import Timeline from "./containers/Timeline";
 
 export default function Routes() {
   return (
@@ -35,6 +36,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/Prof">
          <Profile />
+      </Route>
+      <Route exact path="/timeline">
+         <Timeline />
       </Route>
     </Switch>
   );
