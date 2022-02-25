@@ -16,14 +16,14 @@ const UserSchema = new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        max:20,
         unique:true
     },
 
     password:{
         type: String,
         required:true,
-        min: 6
+        min: 8,
+        max: 16
     },
 
     followers:{
