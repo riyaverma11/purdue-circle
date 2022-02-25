@@ -7,7 +7,7 @@ export default function Feed() {
       <div className="share">
         <div className="shareWrapper">
           <div className="shareTop">
-          <img className="shareProfileImg" src="../riya.jpeg" alt="" />
+          <img className="shareProfileImg" src={userProfileImg} alt="" />
             <input placeholder="What's on your mind?" className="shareInput"/>
             <input placeholder="Topic" className="shareInput"/>
           </div>
