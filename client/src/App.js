@@ -6,13 +6,17 @@ import {
   Switch, 
   Route, 
 } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext.js";
 
 
 function App() {
+
+  const {user} = useContext(AuthContext)
   return (
     <Router>
       <Route exact path="/"> 
-        <Register/>
+        {user ? <Home/> : <Register/>}
         </Route>
       <Switch>
         <Route exact path="/register"> 
