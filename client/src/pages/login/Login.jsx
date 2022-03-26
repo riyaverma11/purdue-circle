@@ -23,15 +23,15 @@ export default function Login() {
         <div className="login">
             <div className="loginWrapper">
                 <div className="loginLeft">
-                    <h3 className="loginLogo">PurdueCircle</h3>
-                    <span className="loginDesc">Connect with others at Purdue</span>
+                    <h3 className="loginLogo">P u r d u e C i r c l e</h3>
+                    <span className="loginDesc">Connect with others at Purdue through this brand-new social media app, designed just for Boilermakers!</span>
                 </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder="Email" type="email" required className="loginInput" ref={email}/>
                         <input placeholder="Password" type="password" className="loginInput" ref={password} minLength="6"/>
                         <button className="loginButton">{isFetching ? <CircularProgress style={{ color: "white"}}/> : "Login"}</button>
-                        <span className="loginForgot">Forgot Password?</span>
+                        {/*<span className="loginForgot">Forgot Password?</span>*/}
                         <button className="loginRegisterButton">Register</button>
                         
                     </form>

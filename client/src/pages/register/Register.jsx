@@ -35,8 +35,8 @@ export default function Register() {
         <div className="register">
             <div className="registerWrapper">
                 <div className="registerLeft">
-                    <h3 className="registerLogo">PurdueCircle</h3>
-                    <span className="registerDesc">Connect with others at Purdue</span>
+                    <h3 className="registerLogo">P u r d u e C i r c l e</h3>
+                    <span className="registerDesc">Connect with others at Purdue through this brand-new social media app, designed just for Boilermakers!</span>
                 </div>
                 <div className="registerRight">
                     <form className="registerBox" onSubmit={handleClick}>
@@ -45,7 +45,7 @@ export default function Register() {
                         <input placeholder="Password" required ref={password} className="RegisterInput" type="password"/>
                         <input placeholder="Confirm Password" required ref={confirmPassword} className="RegisterInput" type="password"/>
                         <input placeholder="Age" required ref={age} className="RegisterInput"/>
-                        <button className="RegisterButton" type="submit">Sign In</button>
+                        <button className="RegisterButton" type="submit">Sign Up</button>
                         <button className="registerLoginButton">Log In</button>
 
                     </form>
