@@ -31,6 +31,11 @@ export default function Register() {
             }
         }
     }
+
+    const redirect = () => {
+        history.push("/login");
+    }
+    
     return (
         <div className="register">
             <div className="registerWrapper">
@@ -46,7 +51,7 @@ export default function Register() {
                         <input placeholder="Confirm Password" required ref={confirmPassword} className="RegisterInput" type="password"/>
                         <input placeholder="Age" required ref={age} className="RegisterInput"/>
                         <button className="RegisterButton" type="submit">Sign Up</button>
-                        <button className="registerLoginButton">Log In</button>
+                        <button className="registerLoginButton" onClick={redirect}>Already have an account? Log In</button>
 
                     </form>
                 </div>

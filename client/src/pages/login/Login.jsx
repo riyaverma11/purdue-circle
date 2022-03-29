@@ -16,6 +16,9 @@ export default function Login() {
         loginCall({email:email.current.value,password:password.current.value},dispatch);
         history.push("/home");
     }
+    const redirect = () => {
+        history.push("/register");
+    }
 
 
     console.log(user);
@@ -32,7 +35,7 @@ export default function Login() {
                         <input placeholder="Password" type="password" className="loginInput" ref={password} minLength="6"/>
                         <button className="loginButton">{isFetching ? <CircularProgress style={{ color: "white"}}/> : "Login"}</button>
                         {/*<span className="loginForgot">Forgot Password?</span>*/}
-                        <button className="loginRegisterButton">Register</button>
+                        <button className="loginRegisterButton" onClick={redirect}>Register</button>
                         
                     </form>
                 </div>
