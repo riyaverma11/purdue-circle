@@ -18,7 +18,7 @@ export default function Topbar() {
         <div className="searchbar">
           <Search className="searchIcon" />
           <input
-            placeholder="Search for friend, post or video"
+            placeholder="Search for friend, post or topic"
             className="searchInput"
           />
         </div>
@@ -26,9 +26,9 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarLinks">
           <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Timeline</span>
+          <span className="topbarLink">My Timeline</span>
         </div>
-        {/*
+        {
         <Link to={`/profile/${user.username}`}>
           <img
             src={
@@ -40,7 +40,7 @@ export default function Topbar() {
             className="topbarImg"
           />
         </Link>
-        */}
+        }
       </div>
     </div>
   );
