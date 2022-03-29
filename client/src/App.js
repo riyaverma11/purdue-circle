@@ -12,11 +12,11 @@ import { AuthContext } from "./context/AuthContext.js";
 
 function App() {
 
-  const {user} = useContext(AuthContext)
+  //const {user} = useContext(AuthContext)
   return (
     <Router>
       <Route exact path="/"> 
-        {user ? <Home/> : <Register/>}
+        <Register/>
         </Route>
       <Switch>
         <Route exact path="/register"> 
