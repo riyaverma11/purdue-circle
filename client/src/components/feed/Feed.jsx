@@ -1,8 +1,8 @@
-/*import { useContext, useEffect, useState } from "react";
-import Post from "../post/Post";*/
+import { useContext, useEffect, useState } from "react";
+import Post from "../post/Post";
 import Share from "../share/Share";
 import "./feed.css";
-
+/*
 export default function Feed () {
 
     return (
@@ -14,7 +14,7 @@ export default function Feed () {
         </div>
     )
 }
-/*
+*/
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -47,4 +47,3 @@ export default function Feed({ username }) {
     </div>
   );
 }
-*/
