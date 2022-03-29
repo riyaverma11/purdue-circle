@@ -6,9 +6,7 @@ export default function Home() {
     return (
         <> 
             <Topbar/>
-            <div className="homeContainer">
-                <Feed/> 
-            </div>
+            <Feed/> 
         </>
         
     );
