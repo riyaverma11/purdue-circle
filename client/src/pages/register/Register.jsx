@@ -22,14 +22,14 @@ export default function Register() {
 		if (email.current.value.length === 0) {
 			document.getElementById("emailError").innerHTML =
 				"Please enter an email address!";
-			console.log("lol");
+			console.log("no email provided");
 			setValidE(0);
 		} else if (
 			!String(email.current.value).match(
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			)
 		) {
-			console.log("lol 2");
+			console.log("invlaid email type");
 			setValidE(0);
 			document.getElementById("emailError").innerHTML =
 				"Please enter a valid email address!";
@@ -43,7 +43,7 @@ export default function Register() {
 		// var re = ^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$;
 		if (password.current.value.length === 0) {
 			document.getElementById("passError").innerHTML = "Please enter password!";
-			console.log("here");
+			console.log("no password written");
 			setValidP(0);
 		} else if (
 			!(
@@ -55,7 +55,7 @@ export default function Register() {
 		) {
 			document.getElementById("passError").innerHTML =
 				"Please enter a valid password!";
-			console.log("here 2");
+			console.log("not a valid password");
 			setValidP(0);
 		} else {
 			document.getElementById("passError").innerHTML = "";
@@ -66,12 +66,12 @@ export default function Register() {
 		if (confirmPassword.current.value.length === 0) {
 			document.getElementById("confirmPassError").innerHTML =
 				"Please enter password again!";
-			console.log("here");
+			console.log("confirm password length is 0");
 			setValidC(0);
 		} else if (confirmPassword.current.value !== password.current.value) {
 			document.getElementById("confirmPassError").innerHTML =
 				"Please enter matching password!";
-			console.log("here 2");
+			console.log("confirm password does not match oringal password");
 			setValidC(0);
 		} else {
 			document.getElementById("confirmPassError").innerHTML = "";
@@ -82,7 +82,7 @@ export default function Register() {
 		if (username.current.value.length === 0) {
 			document.getElementById("unameError").innerHTML =
 				"Please enter username!";
-			console.log("here");
+			console.log("no username provided");
 			setValidU(0);
 		} else if (
 			!(
@@ -92,7 +92,7 @@ export default function Register() {
 		) {
 			document.getElementById("unameError").innerHTML =
 				"Please enter valid username!";
-			console.log("here 2");
+			console.log("username less than 16 char");
 			setValidU(0);
 		} else {
 			document.getElementById("unameError").innerHTML = "";
@@ -102,7 +102,7 @@ export default function Register() {
 	function validateAge() {
 		if (age.current.value.length === 0) {
 			document.getElementById("ageError").innerHTML = "Please enter age!";
-			console.log("here");
+			console.log("no age given");
 			setValidA(0);
 		} else if (
 			!(
@@ -113,7 +113,7 @@ export default function Register() {
 		) {
 			document.getElementById("ageError").innerHTML =
 				"Please enter a valid age!";
-			console.log("here 2");
+			console.log("age is not in the correct range");
 			setValidA(0);
 		} else {
 			document.getElementById("ageError").innerHTML = "";
@@ -139,8 +139,9 @@ export default function Register() {
 				history.push("/home");
 			} catch (err) {
                     ////// how to distingush between types of error???
-               
-               console.log("invalid username or password")
+				document.getElementById("overallError").innerHTML = 
+					"Email or Username already taken!";
+               console.log("email or username already taken")
 			}
 		}
 	};

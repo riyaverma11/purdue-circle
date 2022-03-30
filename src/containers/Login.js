@@ -13,11 +13,11 @@ export default function Login() {
   function validateEmail() {
     if (email.length === 0) {
       document.getElementById("emailError").innerHTML = "Please enter an email address!";
-      console.log("lol");
+      console.log("no email provided");
       setValidE(0);
     }
     else if (!email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-      console.log("lol 2");
+      console.log("invalid email type");
       setValidE(0);
       document.getElementById("emailError").innerHTML = "Please enter a valid email address!";
     }
@@ -32,12 +32,12 @@ export default function Login() {
     // var re = ^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$;
     if (password.length === 0) {
       document.getElementById("passError").innerHTML = "Please enter password!";
-      console.log("here");
+      console.log("no password provided");
       setValidP(0);
     }
     else if (!((password.length >= 8 && password.length <= 16) && (password.match(/(?=.*[^a-zA-Z0-9])/) && !(/\s/g.test(password))))) {
       document.getElementById("passError").innerHTML = "Please enter a valid password!";
-      console.log("here 2");
+      console.log("password not valid");
       setValidP(0);
     }
     else {
