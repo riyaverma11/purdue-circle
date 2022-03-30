@@ -1,5 +1,7 @@
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 export default function Logout() {
-  localStorage.setItem("isAuthenticated", 0);
-  //console.log(isAuthenticated);
-  //window.location.href = "/login";
+      const {user} = useContext(AuthContext);
+      user.authenticated=false;
+      window.location.href = "/login";
 }
