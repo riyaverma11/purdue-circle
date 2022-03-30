@@ -7,10 +7,11 @@ import { CircularProgress } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import React, { useState } from "react";
 
+
 export default function Login() {
 	const email = useRef();
 	const password = useRef();
-	const { user, isFetching, error, dispatch } = useContext(AuthContext);
+	const { isFetching, dispatch } = useContext(AuthContext);
 	const history = useHistory();
 
 	const [validE, setValidE] = useState(0);
@@ -69,17 +70,20 @@ export default function Login() {
 				{ email: email.current.value, password: password.current.value },
 				dispatch
 			);
+
 			history.push("/home");
 		} else {
 			document.getElementById("overallError").innerHTML =
 				"Please fill all fields!";
 		}
 	};
+
+
 	const redirect = () => {
 		history.push("/register");
 	};
 
-	console.log(user);
+	
 	return (
 		<div className="login">
 			<div className="loginWrapper">

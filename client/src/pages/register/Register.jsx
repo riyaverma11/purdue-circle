@@ -136,15 +136,17 @@ export default function Register() {
 			};
 			try {
 				const res = await axios.post("/auth/register", user);
-				history.push("/home");
+				history.push("/login");
 			} catch (err) {
-				console.log(err);
+                    ////// how to distingush between types of error???
+               
+               console.log("invalid username or password")
 			}
 		}
 	};
 
 	const redirect = () => {
-		history.push("/login");
+		history.push("/login"); //// change later to login?
 	};
 
 	return (
