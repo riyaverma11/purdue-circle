@@ -136,7 +136,7 @@ export default function Register() {
 			};
 			try {
 				const res = await axios.post("/auth/register", user);
-				history.push("/login");
+				history.push("/home");
 			} catch (err) {
                     ////// how to distingush between types of error???
                
