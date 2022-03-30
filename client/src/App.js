@@ -12,21 +12,27 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
-
-  const {user} = useContext(AuthContext)
+   let isAuthenticated = localStorage.getItem("isAuthenticated");
+  //const {user} = useContext(AuthContext)
   return (
     <Router>
     <Switch>
       <Route exact path="/">
-        {user ? <Home /> : <Register />}
+       <Register />
       </Route>
-      <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+      <Route path="/login">
+        <Login/>
+      </Route>
       <Route path="/register">
-        {user ? <Redirect to="/" /> : <Register />}
+        <Register/>
+      </Route>
+      <Route path="/home">
+        <Home/>
       </Route>
       <Route path="/profile/:username">
         <Profile />
       </Route>
+
     </Switch>
   </Router>
   );

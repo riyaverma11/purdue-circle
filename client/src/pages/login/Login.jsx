@@ -16,6 +16,7 @@ export default function Login() {
 
 	const [validE, setValidE] = useState(0);
 	const [validP, setValidP] = useState(0);
+    localStorage.setItem("isAuthenticated",0);
 
 	function validateEmail() {
 		if (email.current.value.length === 0) {
@@ -70,7 +71,7 @@ export default function Login() {
 				{ email: email.current.value, password: password.current.value },
 				dispatch
 			);
-
+			localStorage.setItem("isAuthenticated",1);
 			history.push("/home");
 		} else {
 			document.getElementById("overallError").innerHTML =
