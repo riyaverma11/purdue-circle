@@ -36,7 +36,8 @@ export default function Topbar() {
             src={
               user.profilePicture
                 ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
+                //: PF + "person/noAvatar.png"
+                : PF + "person/riya.png"
             }
             alt=""
             className="topbarImg"
