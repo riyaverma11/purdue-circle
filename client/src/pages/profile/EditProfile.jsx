@@ -58,7 +58,8 @@ export default function EditProfile() {
 								src={
 									user.coverPicture
 										? PF + user.coverPicture
-										: PF + "person/noCover.png"
+										//: PF + "person/noCover.png"
+										: PF + "person/purdueCover.jpeg"
 								}
 								alt=""
 							/>
@@ -67,7 +68,8 @@ export default function EditProfile() {
 								src={
 									user.profilePicture
 										? PF + user.profilePicture
-										: PF + "person/noAvatar.png"
+										//: PF + "person/noAvatar.png"
+										: PF + "person/riya.png"
 								}
 								alt=""
 							/>
