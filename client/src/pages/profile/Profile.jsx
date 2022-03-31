@@ -30,7 +30,7 @@ export default function Profile() {
                 src={
                   user.coverPicture
                     ? PF + user.coverPicture
-                    : PF + "assets/person/noCover.png"
+                    : PF + "person/noCover.png"
                 }
                 alt=""
             />
