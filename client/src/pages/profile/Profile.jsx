@@ -58,12 +58,12 @@ export default function Profile() {
 							<span className="profileInfoDesc">Bio</span>
 							{/* TODO: Replace username with username variable here */}
 							<Link
-								to="/profile/username/edit"
-								style={{ textDecoration: "none" }}
+								to={`/profile/${user.username}/edit`}
 							>
 								<Button variant="contained" className="editProfileBtn">
 									Edit Profile
 								</Button>
+
 							</Link>
 							{/* TODO: Write the condition to show Edit Profile/Follow/Unfollow button here */}
 							{/* <Button variant="contained" className="editProfileBtn">

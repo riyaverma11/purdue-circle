@@ -29,16 +29,16 @@ router.put("/:id", async (req, res) => {
 
 //delete user
 router.delete("/:id", async (req, res) => { // check if user is allowed to update account
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
+  //if (req.body.userId === req.params.id || req.body.isAdmin) {
     try { // find the user and delete
       await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted");
     } catch (err) {
       return res.status(500).json(err);
     }
-  } else { // user does not have access
-    return res.status(403).json("Access Restricted!");
-  }
+  //} else { // user does not have access
+   // return res.status(403).json("Access Restricted!");
+  //}
 });
 
 //get a user

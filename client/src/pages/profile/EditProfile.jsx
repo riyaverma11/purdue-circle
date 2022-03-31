@@ -5,15 +5,18 @@ import { Button, TextField, InputLabel } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 
 export default function EditProfile() {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const [user, setUser] = useState({});
-	const username = useParams().username; //currently not working lol: not the username
 
-	/*var urlString = window.location.href;
+	const history = useHistory();
+	var urlString = window.location.href;
 	let lastIndex = urlString.lastIndexOf("/") + 1;
-	const username = urlString.substring(lastIndex);*/
+	var urlString2 = urlString.substring(0,lastIndex-1);
+	let lastIndex2 = urlString2.lastIndexOf("/") + 1;
+	const username = urlString2.substring(lastIndex2);
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -52,6 +55,12 @@ export default function EditProfile() {
 	}
 	const handleDelete = async e => {
 		e.preventDefault();
+		try {
+			const res = await axios.delete(`/users/${user._id}`);
+			history.push("/register");
+		} catch (err) {
+		   console.log("error with deleting");
+		}
 	}
 
 	return (
@@ -123,9 +132,11 @@ export default function EditProfile() {
 							<Button variant="contained" className="editProfileBtn">
 								Save Changes
 							</Button>
+
 							<Button variant="contained" className="deleteProfileBtn" onClick={handleDelete}>
 								Delete Profile
 							</Button>
+							
 						</div>
 					</div>
 				</div>
