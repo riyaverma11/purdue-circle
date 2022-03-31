@@ -22,7 +22,6 @@ export default function Profile() {
     <>
       <Topbar />
       <div className="profile">
-        {/*<Sidebar />*/}
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
@@ -31,7 +30,7 @@ export default function Profile() {
                 src={
                   user.coverPicture
                     ? PF + user.coverPicture
-                    : PF + "person/noCover.png"
+                    : PF + "assets/person/noCover.png"
                 }
                 alt=""
             />
@@ -53,7 +52,6 @@ export default function Profile() {
           <div className="profileRightBottom">
             <Feed username={username} />
             
-            {/*<Rightbar user={user} />*/}
           </div>
         </div>
       </div>

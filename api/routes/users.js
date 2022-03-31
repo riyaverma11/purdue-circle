@@ -42,6 +42,7 @@ router.delete("/:id", async (req, res) => { // check if user is allowed to updat
 });
 
 //get a user
+/*
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -55,6 +56,20 @@ router.get("/:id", async (req, res) => {
   } catch (err) {
     //return res.status(500).json(err);
     return res.status(500).json("user does not exist!"); // this should not be how this code works yo!
+  }
+});
+*/
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
+  try {
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
+    const { password, updatedAt, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
