@@ -21,7 +21,7 @@ function App() {
        <Register />
       </Route>
       <Route path="/login">
-      {user.authenticated? <Redirect to ="/home" /> : <Login/>}
+      {user.authenticated ? <Redirect to ="/home" /> : <Login/>}
         <Login/>
       </Route>
       <Route path="/register">

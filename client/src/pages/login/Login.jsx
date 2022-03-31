@@ -1,17 +1,16 @@
 import "./login.css";
 import { useRef } from "react";
-import { loginCall } from "../../apiCalls";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import React, { useState } from "react";
-
+import axios from "axios";
 
 export default function Login() {
 	const email = useRef();
 	const password = useRef();
-	const { isFetching, dispatch } = useContext(AuthContext);
+	const { isFetching } = useContext(AuthContext);
 	const history = useHistory();
 
 	const [validE, setValidE] = useState(0);
@@ -63,16 +62,31 @@ export default function Login() {
 		}
 	}
 
-	const handleClick = e => {
+	const handleClick = async e => {
 		e.preventDefault();
 		if (validE + validP === 2) {
 			
-			loginCall(
+			/*loginCall(
 				{ email: email.current.value, password: password.current.value },
 				dispatch
-			);
+			);*/
+			const userCred = {
+				//TODO check to see if this is everything user needs
+				email: email.current.value,
+				password: password.current.value,
+				
+			};
+
+			try{
+				const res = await axios.post("/auth/login",userCred);
+				history.push("/home");
+			}catch(err){
+				document.getElementById("overallError").innerHTML = 
+				"Invalid credentials!";
+		   		console.log("Invalid credentials!")
+			}
 			
-			history.push("/home");
+			
 		} else {
 			document.getElementById("overallError").innerHTML =
 				"Please fill all fields!";
