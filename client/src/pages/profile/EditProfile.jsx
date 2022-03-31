@@ -50,6 +50,9 @@ export default function EditProfile() {
 			setValidU(1);
 		}
 	}
+	const handleDelete = async e => {
+		e.preventDefault();
+	}
 
 	return (
 		<>
@@ -119,6 +122,9 @@ export default function EditProfile() {
 							{/* TODO: Implement the functionality of the save changes button */}
 							<Button variant="contained" className="editProfileBtn">
 								Save Changes
+							</Button>
+							<Button variant="contained" className="deleteProfileBtn" onClick={handleDelete}>
+								Delete Profile
 							</Button>
 						</div>
 					</div>

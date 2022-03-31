@@ -55,6 +55,18 @@
 	margin: 2rem;
 }
 
+.deleteProfileBtn{
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #CEB888;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+	margin: 2rem;
+}
+
 .spacer {
 	margin-top: 2rem;
 }
