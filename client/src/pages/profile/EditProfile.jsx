@@ -9,11 +9,11 @@ import { useParams } from "react-router";
 export default function EditProfile() {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const [user, setUser] = useState({});
-	//const username = useParams().username;
+	const username = useParams().username; //currently not working lol: not the username
 
-	var urlString = window.location.href;
+	/*var urlString = window.location.href;
 	let lastIndex = urlString.lastIndexOf("/") + 1;
-	const username = urlString.substring(lastIndex);
+	const username = urlString.substring(lastIndex);*/
 
 	useEffect(() => {
 		const fetchUser = async () => {
