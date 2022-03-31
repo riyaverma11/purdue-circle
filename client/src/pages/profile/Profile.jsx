@@ -4,6 +4,7 @@ import Feed from "../../components/feed/Feed";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { NotificationsActiveRounded } from "@mui/icons-material";
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -30,7 +31,8 @@ export default function Profile() {
                 src={
                   user.coverPicture
                     ? PF + user.coverPicture
-                    : PF + "person/noCover.png"
+                    : PF + "person/purdueCover.jpeg"
+                    //: PF + "person/noCover.png"
                 }
                 alt=""
             />
@@ -39,7 +41,8 @@ export default function Profile() {
                 src={
                   user.profilePicture
                     ? PF + user.profilePicture
-                    : PF + "person/noAvatar.png"
+                    //: PF + "person/noAvatar.png"
+                    : PF + "person/riya.png"
                 }
                 alt=""
               />
