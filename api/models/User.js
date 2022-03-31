@@ -1,55 +1,48 @@
 const mongoose = require("mongoose");
-const UserSchema = new mongoose.Schema({
-    username:{
-        type:String, 
-        required: true,
-        max: 16, //max 20 characters
-        unique: true
+
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      require: true,
+      unique: true,
     },
-
-    age:{
-        type:Number,
-        min: 17,
-        max: 110
+    email: {
+      type: String,
+      required: true,
+      max: 50,
+      unique: true,
     },
-
-    email:{
-        type:String,
-        required:true,
-        unique:true
+    password: {
+      type: String,
+      required: true,
+      min: 6,
     },
-
-    password:{
-        type: String,
-        required:true,
-        min: 8,
-        max: 16
+    profilePicture: {
+      type: String,
+      default: "",
     },
-
-    followers:{
-        type:Array, //array of usernames
-        default:[] //default is empty array 
+    
+    followers: {
+      type: Array,
+      default: [],
     },
-
-    following:{
-        type:Array, //array of usernames
-        default:[] //default is empty array 
+    followings: {
+      type: Array,
+      default: [],
     },
-
-    isAdmin:{
-        type:Boolean,
-        default:false 
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
-
-    bio:{
-        type:String,
-        max:50
-    }
-
-
-},
-{timestamps:true} // whenever a user is created, update time stamp
+    desc: {
+      type: String,
+      max: 50,
+    },
+  
+   
+  },
+  { timestamps: true }
 );
-
 
 module.exports = mongoose.model("User", UserSchema);
