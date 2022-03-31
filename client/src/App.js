@@ -7,13 +7,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
+
 
 function App() {
-  const {user} = useContext(AuthContext)
+  
   return (
     <Router>
     <Switch>
@@ -21,8 +19,7 @@ function App() {
        <Register />
       </Route>
       <Route path="/login">
-      {user.authenticated ? <Redirect to ="/home" /> : <Login/>}
-        <Login/>
+      <Login/>  
       </Route>
       <Route path="/register">
         <Register/>

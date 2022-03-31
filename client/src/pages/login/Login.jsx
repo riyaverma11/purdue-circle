@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Login() {
 	const email = useRef();
 	const password = useRef();
-	const { isFetching } = useContext(AuthContext);
+	const { isFetching, dispatch } = useContext(AuthContext);
 	const history = useHistory();
 
 	const [validE, setValidE] = useState(0);
@@ -64,6 +64,7 @@ export default function Login() {
 
 	const handleClick = async e => {
 		e.preventDefault();
+
 		if (validE + validP === 2) {
 			
 			/*loginCall(
@@ -79,6 +80,7 @@ export default function Login() {
 
 			try{
 				const res = await axios.post("/auth/login",userCred);
+				dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
 				history.push("/home");
 			}catch(err){
 				document.getElementById("overallError").innerHTML = 
