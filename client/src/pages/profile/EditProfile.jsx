@@ -8,6 +8,8 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
 export default function EditProfile() {
+
+	
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const [user, setUser] = useState({});
 
@@ -17,6 +19,8 @@ export default function EditProfile() {
 	var urlString2 = urlString.substring(0,lastIndex-1);
 	let lastIndex2 = urlString2.lastIndexOf("/") + 1;
 	const username = urlString2.substring(lastIndex2);
+	const [usernameEdit, setUsername] = useState(user.username);
+	const [bioEdit,setBio] = useState(user.desc);
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -32,12 +36,7 @@ export default function EditProfile() {
 	const bioInput = useRef();
 
 	function validateUsername() {
-		if (usernameInput.current.value.length === 0) {
-			document.getElementById("unameError").innerHTML =
-				"Please enter username!";
-			console.log("no username provided");
-			setValidU(0);
-		} else if (
+		if (
 			!(
 				usernameInput.current.value.length <= 16 &&
 				!/\s/g.test(usernameInput.current.value)
@@ -61,6 +60,33 @@ export default function EditProfile() {
 		} catch (err) {
 		   console.log("error with deleting");
 		}
+	}
+
+	const handleEdit = async e => {
+		e.preventDefault();
+		
+
+		if(usernameInput.current.value.length != 0 ){
+			try {
+			axios.put("/users/" + user._id, { username: usernameInput.current.value});
+				history.push("/login");
+			} catch (err) {
+			   console.log("error with editing username");
+			}
+		}
+
+		if(bioInput.current.value.length!=0){
+			
+			try {
+				axios.put("/users/" + user._id, { desc: bioInput.current.value});
+					history.push("/login");
+				} catch (err) {
+				   console.log("error with editing bio");
+				}
+		}
+
+		
+		//history.push("/home");
 	}
 
 	return (
@@ -101,6 +127,7 @@ export default function EditProfile() {
 								Upload New Image
 								<input type="file" hidden />
 							</Button>
+
 							<TextField
 								id="outlined-basic"
 								label="Username"
@@ -127,12 +154,13 @@ export default function EditProfile() {
                             </InputLabel> */}
 
 							<div className="spacer"></div>
+							
 
 							{/* TODO: Implement the functionality of the save changes button */}
-							<Button variant="contained" className="editProfileBtn">
+							<Button variant="contained" className="editProfileBtn" onClick={handleEdit}>
 								Save Changes
 							</Button>
-
+							<div className="spacer"></div>
 							<Button variant="contained" className="deleteProfileBtn" onClick={handleDelete}>
 								Delete Profile
 							</Button>

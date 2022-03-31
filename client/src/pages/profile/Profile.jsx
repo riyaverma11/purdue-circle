@@ -55,8 +55,11 @@ export default function Profile() {
 						
 						<div className="profileInfo">
 							<h4 className="profileInfoName">{user.username}</h4>
-							<span className="profileInfoDesc">Bio</span>
+							<span className="profileInfoDesc">{user.desc}</span>
 							{/* TODO: Replace username with username variable here */}
+							
+							<div className="spacer"></div>
+							
 							<Link
 								to={`/profile/${user.username}/edit`}
 							>

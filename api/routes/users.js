@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 //update user
 router.put("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) { // check if user is allowed to update account
+  //if (req.body.userId === req.params.id || req.body.isAdmin) { // check if user is allowed to update account
     if (req.body.password) {
       try { // update password and reencrypt
         const salt = await bcrypt.genSalt(10);
@@ -22,9 +22,9 @@ router.put("/:id", async (req, res) => {
     } catch (err) {
       return res.status(500).json(err);
     }
-  } else { // user does not have access
+ /* } else { // user does not have access
     return res.status(403).json("Access Restricted!");
-  }
+  }*/
 });
 
 //delete user
