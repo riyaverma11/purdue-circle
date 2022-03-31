@@ -117,9 +117,6 @@ export default function EditProfile() {
 							</Button>
 						</div>
 					</div>
-					<div className="profileRightBottom">
-						<Feed username={username} />
-					</div>
 				</div>
 			</div>
 		</>
