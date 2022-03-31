@@ -1,25 +1,28 @@
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
-import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { NotificationsActiveRounded } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 
 export default function Profile() {
-	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-	const [user, setUser] = useState({});
-	const username = useParams().username;
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [user, setUser] = useState({});
+  //const username = useParams().username;
 
-	useEffect(() => {
-		const fetchUser = async () => {
-			const res = await axios.get(`/users?username=${username}`);
-			setUser(res.data);
-		};
-		fetchUser();
-	}, [username]);
+  var urlString = window.location.href;
+  let lastIndex = urlString.lastIndexOf("/") + 1;
+  const username = urlString.substring(lastIndex);
+ 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/users?username=${username}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [username]);
 
 	return (
 		<>
@@ -49,9 +52,9 @@ export default function Profile() {
 								alt=""
 							/>
 						</div>
-						{user.username}
+						
 						<div className="profileInfo">
-							<h4 className="profileInfoName">Username</h4>
+							<h4 className="profileInfoName">{user.username}</h4>
 							<span className="profileInfoDesc">Bio</span>
 							{/* TODO: Replace username with username variable here */}
 							<Link
@@ -72,7 +75,7 @@ export default function Profile() {
 						</div>
 					</div>
 					<div className="profileRightBottom">
-						<Feed username={username} />
+					<Feed username={username} />
 					</div>
 				</div>
 			</div>
