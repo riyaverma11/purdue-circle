@@ -8,20 +8,20 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import {ThemeProvider} from "styled-components";
 import { GlobalStyles } from "./components/globalStyle";
-import { lightTheme, darkTheme } from "./components/Theme"
+import { lightTheme, darkTheme } from "./components/Theme";
+import  {useDarkMode} from "./components/useDarkMode";
+import Toggle from "./components/Toggle"
 
 function App() {
-	const [theme, setTheme] = useState('light');
-	const themeToggler = () => {
-	  theme === 'light' ? setTheme('dark') : setTheme('light')
-  	}
-	
+	const [theme, themeToggler, mountedComponent] = useDarkMode();
+	const themeMode = theme === 'light' ? lightTheme : darkTheme
+	if(!mountedComponent) return <div/>
+
 	return (
-		<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-		<>
+		<ThemeProvider theme={themeMode}>
+			<>
 		<GlobalStyles/>
-		<button onClick={themeToggler}>Switch Theme</button>
-		<Router>
+		<Toggle theme={theme} toggleTheme={themeToggler} />		<Router>
 			<Switch>
 				<Route exact path="/">
 					<Register />
