@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
+import RightBar from "../../components/rightBar/RightBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 //import { useParams } from "react-router";
@@ -76,6 +77,7 @@ export default function Profile() {
 					</div>
 					<div className="profileRightBottom">
 						<Feed username={username} />
+						<RightBar user={user} />
 					</div>
 				</div>
 			</div>
