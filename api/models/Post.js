@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema(
     },
     desc: {
       type: String,
-      max: 500,
+      maxlength: 500, //limits the amount of characters to 500 char
     },
     img: {
       type: String,
