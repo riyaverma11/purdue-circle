@@ -177,10 +177,10 @@ export default function Register() {
 							onBlur={validateUsername}
 						/>
 						<div id="unameError" style={{ color: "red" }}></div>
-						<small style={{ textAlign: "center" }}>
+						<small style={{ textAlign: "center", color: "darkgoldenrod"}}>
 							Username length is restricted to 16 characters.
 						</small>
-						                    
+
 						<input
 							placeholder="Password"
 							ref={password}
@@ -189,7 +189,7 @@ export default function Register() {
 							onBlur={validatePassword}
 						/>
 						<div id="passError" style={{ color: "red" }}></div>
-						<small style={{ textAlign: "center" }}>
+						<small style={{ textAlign: "center", color: "darkgoldenrod" }}>
 							Your password must be 8-16 characters long and have at least
 							special character and must not contain spaces.
 						</small>
@@ -208,9 +208,8 @@ export default function Register() {
 							onBlur={validateAge}
 						/>
 						<div id="ageError" style={{ color: "red" }}></div>
-						                    
-						<small style={{ textAlign: "center" }}>
-							User must be atleast 17 years old.
+						<small style={{ textAlign: "center", color: "darkgoldenrod" }}>
+							User must be at least 17 years old.
 						</small>
 						<button className="RegisterButton" type="submit">
 							Sign Up

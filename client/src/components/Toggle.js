@@ -1,10 +1,11 @@
 import React from 'react'
 import { func, string } from 'prop-types';
 import styled from "styled-components"
+//  color: ${({ theme }) => theme.text};
 const Button = styled.button`
   background: ${({ theme }) => theme.background};
   border: 2px solid ${({ theme }) => theme.toggleBorder};
-  color: ${({ theme }) => theme.text};
+  color: ${({theme}) => theme.$text || 'white'};
   border-radius: 30px;
   cursor: pointer;
   font-size:0.8rem;
