@@ -8,21 +8,21 @@ import axios from "axios";
 //import { useParams } from "react-router";
 
 export default function Profile() {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [user, setUser] = useState({});
-  //const username = useParams().username;
+	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+	const [user, setUser] = useState({});
+	//const username = useParams().username;
 
-  var urlString = window.location.href;
-  let lastIndex = urlString.lastIndexOf("/") + 1;
-  const username = urlString.substring(lastIndex);
- 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const res = await axios.get(`/users?username=${username}`);
-      setUser(res.data);
-    };
-    fetchUser();
-  }, [username]);
+	var urlString = window.location.href;
+	let lastIndex = urlString.lastIndexOf("/") + 1;
+	const username = urlString.substring(lastIndex);
+
+	useEffect(() => {
+		const fetchUser = async () => {
+			const res = await axios.get(`/users?username=${username}`);
+			setUser(res.data);
+		};
+		fetchUser();
+	}, [username]);
 
 	return (
 		<>
@@ -35,9 +35,9 @@ export default function Profile() {
 								className="profileCoverImg"
 								src={
 									user.coverPicture
-										? PF + user.coverPicture
-										//: PF + "person/noCover.png"
-										: PF + "person/purdueCover.jpeg"
+										? user.coverPicture
+										: //: PF + "person/noCover.png"
+										  PF + "person/purdueCover.jpeg"
 								}
 								alt=""
 							/>
@@ -45,28 +45,25 @@ export default function Profile() {
 								className="profileUserImg"
 								src={
 									user.profilePicture
-										? PF + user.profilePicture
-										//: PF + "person/noAvatar.png"
-										: PF + "person/riya.png"
+										? user.profilePicture
+										: //: PF + "person/noAvatar.png"
+										  PF + "person/riya.png"
 								}
 								alt=""
 							/>
 						</div>
-						
+
 						<div className="profileInfo">
 							<h4 className="profileInfoName">{user.username}</h4>
 							<span className="profileInfoDesc">{user.desc}</span>
 							{/* TODO: Replace username with username variable here */}
-							
+
 							<div className="spacer"></div>
-							
-							<Link
-								to={`/profile/${user.username}/edit`}
-							>
+
+							<Link to={`/profile/${user.username}/edit`}>
 								<Button variant="contained" className="editProfileBtn">
 									Edit Profile
 								</Button>
-
 							</Link>
 							{/* TODO: Write the condition to show Edit Profile/Follow/Unfollow button here */}
 							{/* <Button variant="contained" className="editProfileBtn">
@@ -78,7 +75,7 @@ export default function Profile() {
 						</div>
 					</div>
 					<div className="profileRightBottom">
-					<Feed username={username} />
+						<Feed username={username} />
 					</div>
 				</div>
 			</div>
