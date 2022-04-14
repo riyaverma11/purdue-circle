@@ -6,22 +6,6 @@
     padding: 20px 20px 0 0;
   }
   
-  .birthdayContainer {
-    display: flex;
-    align-items: center;
-  }
-  
-  .birthdayImg {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  
-  .birthdayText {
-    font-weight: 300;
-    font-size: 15px;
-  }
-  
   .rightbarAd {
     width: 100%;
     border-radius: 10px;
@@ -39,7 +23,7 @@
   }
   
   .rightbarTitle{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     margin-bottom: 10px;
   }
@@ -76,8 +60,8 @@
   }
   
   .rightbarFollowingImg{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 5px;
   }
@@ -95,6 +79,11 @@
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+  }
+
+  .rightbarFollowingName{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ceb888;
   }
   
   .rightbarFollowButton:focus{
