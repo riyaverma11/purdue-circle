@@ -64,7 +64,6 @@ export default function Login() {
 
 	const handleClick = async e => {
 		e.preventDefault();
-
 		if (validE + validP === 2) {
 			
 			/*loginCall(

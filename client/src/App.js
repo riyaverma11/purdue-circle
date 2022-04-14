@@ -3,6 +3,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import Register from "./pages/register/Register";
+import Search from "./pages/search/search";
 import Logout from "./pages/logout/Logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -40,6 +41,9 @@ function App() {
 				</Route>
 				<Route exact path="/profile/:username/edit">
 					<EditProfile />
+				</Route>
+				<Route path="/search">
+					<Search />
 				</Route>
 
 				<Route path="/logout">

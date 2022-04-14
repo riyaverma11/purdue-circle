@@ -26,7 +26,6 @@ router.post("/register", async (req,res)=>{ // had this as get before
             password: hashedPassword,
         });
 
-
         // save user and respond
         const existingUser = await User.findOne({username:req.body.username}); // username with that email already exists
         if(!existingUser){
@@ -48,6 +47,27 @@ router.post("/register", async (req,res)=>{ // had this as get before
 })
 
 // end of register
+
+//search
+router.post("/search", async (req,res)=>{
+    try{
+        // find user with same email
+        const user = await User.findOne({username:req.body.username});
+        if(!user){
+            return res.status(404).json("user not found."); // if user not found send error message
+        }
+        
+        // if valid email and password,, send success
+        return res.status(200).json(user);
+
+    }catch(err){
+       // console.log(err);
+       return res.status(500).json(err);
+    }
+    
+    
+}); 
+
 
 router.post("/login", async (req,res)=>{
     try{
