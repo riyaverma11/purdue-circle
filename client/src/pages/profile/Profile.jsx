@@ -18,8 +18,17 @@ export default function Profile() {
 	var urlString = window.location.href;
 	let lastIndex = urlString.lastIndexOf("/") + 1;
 	const username = urlString.substring(lastIndex);
+	console.log("User = ");
 	console.log(user);
 	console.log(currentUser);
+
+	useEffect(() => {
+		const fetchUser = async () => {
+		  const res = await axios.get(`/users?username=${username}`);
+		  setUser(res.data);
+		};
+		fetchUser();
+	  }, [username]);
 	
 	let btnElem
 	if (username == currentUser.username) {

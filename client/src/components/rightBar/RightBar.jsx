@@ -13,7 +13,8 @@ export default function Rightbar({ user }) {
   var urlString = window.location.href;
   let lastIndex = urlString.lastIndexOf("/") + 1;
   const username = urlString.substring(lastIndex);
-
+  console.log("rb user");
+  console.log(user);
   const [followed, setFollowed] = useState(
     currentUser.followings.includes(user._id)
   );
@@ -68,6 +69,9 @@ export default function Rightbar({ user }) {
   };
 
   const ProfileRightbar = () => {
+    setFollowed(currentUser.followings.includes(user._id))
+    console.log("followedddd = ")
+    console.log(followed)
     return (
       <>
         {user.username !== currentUser.username && (
