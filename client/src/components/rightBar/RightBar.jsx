@@ -80,7 +80,7 @@ export default function Rightbar({ user }) {
             {followed ? <Remove /> : <Add />}
           </button>
         )}
-        <h4 className="rightbarTitle">User's followed:</h4>
+        <h4 className="rightbarTitle">Users followed:</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (
             <Link
@@ -102,6 +102,7 @@ export default function Rightbar({ user }) {
             </Link>
           ))}
         </div>
+        <h4 className="rightbarTitle">Topics followed:</h4>
       </>
     );
   };
