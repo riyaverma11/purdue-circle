@@ -1,21 +1,34 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./profile.css";
+import { AuthContext } from "../../context/AuthContext";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
 import RightBar from "../../components/rightBar/RightBar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 //import { useParams } from "react-router";
 
 export default function Profile() {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const [user, setUser] = useState({});
+	const { user: currentUser, dispatch } = useContext(AuthContext);
 	//const username = useParams().username;
 
 	var urlString = window.location.href;
 	let lastIndex = urlString.lastIndexOf("/") + 1;
 	const username = urlString.substring(lastIndex);
+	console.log(user);
+	console.log(currentUser);
+	
+	let btnElem
+	if (username == currentUser.username) {
+		btnElem = (<Link to={`/profile/${user.username}/edit`}>
+		<Button variant="contained" className="editProfileBtn">
+			Edit Profile
+		</Button>
+	</Link>)
+	}
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -60,12 +73,7 @@ export default function Profile() {
 							{/* TODO: Replace username with username variable here */}
 
 							<div className="spacer"></div>
-
-							<Link to={`/profile/${user.username}/edit`}>
-								<Button variant="contained" className="editProfileBtn">
-									Edit Profile
-								</Button>
-							</Link>
+							{btnElem}
 							{/* TODO: Write the condition to show Edit Profile/Follow/Unfollow button here */}
 							{/* <Button variant="contained" className="editProfileBtn">
 								Follow

@@ -10,14 +10,23 @@ export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
+  var urlString = window.location.href;
+  let lastIndex = urlString.lastIndexOf("/") + 1;
+  const username = urlString.substring(lastIndex);
+
   const [followed, setFollowed] = useState(
-    currentUser.followings.includes(user?.id)
+    currentUser.followings.includes(user._id)
   );
+  console.log(user._id);
+  console.log(currentUser.followings.includes(user._id));
+  
+  
 
   useEffect(() => {
     const getFriends = async () => {
       try {
         const friendList = await axios.get("/users/friends/" + user._id);
+        console.log(friendList);
         setFriends(friendList.data);
       } catch (err) {
         console.log(err);
@@ -67,11 +76,11 @@ export default function Rightbar({ user }) {
             {followed ? <Remove /> : <Add />}
           </button>
         )}
-        <h4 className="rightbarTitle">User friends</h4>
+        <h4 className="rightbarTitle">User's followed:</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (
             <Link
-              to={"/profile/" + friend.username}
+            onClick={()=>{window.location.href = '/profile/' + friend.username;} }
               style={{ textDecoration: "none" }}
             >
               <div className="rightbarFollowing">
@@ -79,7 +88,7 @@ export default function Rightbar({ user }) {
                   src={
                     friend.profilePicture
                       ? PF + friend.profilePicture
-                      : PF + "person/noAvatar.png"
+                      : PF + "person/riya.png"
                   }
                   alt=""
                   className="rightbarFollowingImg"
