@@ -1,5 +1,5 @@
 import "./post.css";
-import { MoreVert } from "@mui/icons-material";
+import { MoreVert, BookmarkAdd } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
@@ -70,22 +70,20 @@ const renderText = txt =>
 					<span className="postText">{renderText(post.desc)}</span>
 					<img className="postImg" src={PF + post.img} alt="" />
 				</div>
+
 				<div className="postBottom">
 					<div className="postBottomLeft">
+						<div className="shareOption">
+                    		<BookmarkAdd htmlColor="DarkGray" className="shareIcon" />
+                        		<span className="shareOptionText">Save Post</span>
+                		</div>
 						<img
 							className="likeIcon"
 							src={`${PF}like.png`}
 							onClick={likeHandler}
 							alt=""
 						/>
-						{/*
-            <img
-              className="likeIcon"
-              src={`${PF}heart.png`}
-              onClick={likeHandler}
-              alt=""
-            />
-              */}
+						
 						<span className="postLikeCounter">{like} likes</span>
 					</div>
 					<div className="postBottomRight">

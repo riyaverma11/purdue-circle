@@ -1,5 +1,5 @@
 import "./share.css";
-import { PermMedia, Label, Cancel, BookmarkAdd } from "@mui/icons-material";
+import { PermMedia, Label, Cancel } from "@mui/icons-material";
 //import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -89,10 +89,11 @@ export default function Share() {
                             <Label htmlColor="blue" className="shareIcon" />
                             <span className="shareOptionText">Topic</span>
                         </div>
+                        {/*
                         <div className="shareOption">
                             <BookmarkAdd htmlColor="DarkGray" className="shareIcon" />
                             <span className="shareOptionText">Save Post</span>
-                        </div>
+                        </div>*/}
                         <div className="shareOption">
                             {/* <Label htmlColor="green" className="shareIcon" /> */}
                             <input
