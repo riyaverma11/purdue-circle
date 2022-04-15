@@ -1,5 +1,6 @@
 import "./share.css";
 import { PermMedia, Label, Cancel } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 //import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -86,8 +87,8 @@ export default function Share() {
                             />
                         </label>
                         <div className="shareOption">
-                            <Label htmlColor="blue" className="shareIcon" />
-                            <span className="shareOptionText">Topic</span>
+							<Search className="searchIcon" />
+								<input placeholder="Search for friends or topics" className="searchInput" ref={username}/>
                         </div>
                         {/*
                         <div className="shareOption">
