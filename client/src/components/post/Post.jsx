@@ -32,6 +32,16 @@ export default function Post({ post }) {
 		setLike(isLiked ? like - 1 : like + 1);
 		setIsLiked(!isLiked);
 	};
+
+	const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+
+const renderText = txt =>
+  txt
+    .split(" ")
+    .map(part =>
+      URL_REGEX.test(part) ? <a href={part}>{part} </a> : part + " "
+    );
+
 	return (
 		<div className="post">
 			<div className="postWrapper">
@@ -57,7 +67,7 @@ export default function Post({ post }) {
 					</div>
 				</div>
 				<div className="postCenter">
-					<span className="postText">{post.desc}</span>
+					<span className="postText">{renderText(post.desc)}</span>
 					<img className="postImg" src={PF + post.img} alt="" />
 				</div>
 				<div className="postBottom">
