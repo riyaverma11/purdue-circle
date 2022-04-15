@@ -9,6 +9,7 @@ const PostSchema = new mongoose.Schema(
     desc: {
       type: String,
       maxlength: 500, //limits the amount of characters to 500 char
+      minlength: 1, //users cannot make an empty post
     },
     img: {
       type: String,
