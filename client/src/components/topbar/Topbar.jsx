@@ -27,7 +27,7 @@ export default function Topbar() {
 			const res = await axios.post("/auth/search",usernameInput);
             console.log("user exists")
 			history.push(`/profile/${username.current.value}`);
-			
+			window.location.href = '/profile/'+username.current.value;
 		}catch(err){
 			document.getElementById("overallError").innerHTML = 
 			"User doesn't exist";
@@ -65,7 +65,8 @@ export default function Topbar() {
 				</Link>
 
 				{
-					<Link to={`/profile/${user.username}`}>
+					<Link 
+						onClick={()=>{window.location.href = '/profile/' + user.username;} }>
 						<img
 							src={
 								user.profilePicture
