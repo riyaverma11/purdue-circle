@@ -1,6 +1,5 @@
 import "./share.css";
-import { PermMedia, Label, Cancel } from "@mui/icons-material";
-import { Search } from "@mui/icons-material";
+import { PermMedia, Label, Cancel} from "@mui/icons-material";
 //import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -15,7 +14,9 @@ export default function Share() {
 
     const { user } = useContext(AuthContext);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const topic = useRef();
     const desc = useRef();
+
     const [file, setFile] = useState(null);
 
     const submitHandler = async e => {
@@ -25,10 +26,28 @@ export default function Share() {
         if (checked) {
             finalUserID = "625667cd7a5eaf94ffe854ad";
         }
-        const newPost = {
-            userId: finalUserID,
-            desc: desc.current.value
+        
+        const topicUser = { // create a topic "user"
+            //TODO check to see if this is everything user needs
+            username: topic.current.value,
+            email: topic.current.value,
+            password: "darshanaisawesome!",
         };
+
+        try { // add the topic to the database
+        await axios.post("/auth/register", topicUser);
+        } catch (err) {
+                console.log(err);
+        }
+
+
+        const newPost = { 
+            userId: finalUserID,
+            desc: desc.current.value,
+            topic: topic.current.value
+        };
+
+
         if (file) {
             const data = new FormData();
             const fileName = Date.now() + file.name;
@@ -44,6 +63,8 @@ export default function Share() {
             await axios.post("/posts", newPost);
             window.location.reload();
         } catch (err) {}
+
+
     };
 
     return (
@@ -60,7 +81,7 @@ export default function Share() {
                         }
                         alt=""
                     />
-                    <input
+                    <textarea
                         placeholder={"What's on your mind " + user.username + "?"}
                         className="shareInput"
                         ref={desc}
@@ -87,8 +108,13 @@ export default function Share() {
                             />
                         </label>
                         <div className="shareOption">
-							<Search className="searchIcon" />
-								<input placeholder="Search for friends or topics" className="searchInput" ref={username}/>
+                            <Label htmlColor="blue" className="shareIcon" />
+                            {/*<span className="shareOptionText">Topic</span>*/}
+                            <input
+                                placeholder={"Topic"}
+                                className="shareInput"
+                                ref={topic}
+                            />
                         </div>
                         {/*
                         <div className="shareOption">
