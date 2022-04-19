@@ -6,8 +6,27 @@ const User = require("../models/User");
 
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
+  console.log(newPost);
+  const topicName = await User.find({username: req.body.topic});
+
+  
+  if(!req.body.topic){
+    topicName[0] = "";
+  }
+  
+  //console.log(String(topicName[0]._id));
+  const newPost1 = {
+    userId: req.body.userId,
+    topic: String(topicName[0]._id),
+    desc: req.body.desc,
+    img: req.body.img,
+    likes: req.body.likes
+  };
+
+  const newPost1Obj = new Post(newPost1)
+  console.log(newPost1Obj)
   try {
-    const savedPost = await newPost.save();
+    const savedPost = await newPost1Obj.save();
     res.status(200).json(savedPost);
   } catch (err) {
     res.status(500).json(err);
@@ -75,13 +94,27 @@ router.get("/:id", async (req, res) => {
 router.get("/timeline/:userId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
+    //const topic = await currentUser.findById("625de278b555fba6614a3ac1");
     const userPosts = await Post.find({ userId: currentUser._id });
+
     const friendPosts = await Promise.all(
       currentUser.followings.map((friendId) => {
         return Post.find({ userId: friendId });
       })
     );
-    res.status(200).json(userPosts.concat(...friendPosts));
+
+
+    const topicPosts = await Promise.all(
+        currentUser.topicsFollowed.map((topicId) => {
+
+          const post = Post.find({ topic: topicId});
+            return post;
+          
+       
+      })
+    );
+
+    res.status(200).json(userPosts.concat(...friendPosts).concat(...topicPosts));
   } catch (err) {
     res.status(500).json(err);
   }
@@ -90,12 +123,14 @@ router.get("/timeline/:userId", async (req, res) => {
 //get user's all posts
 
 router.get("/profile/:username", async (req, res) => {
+  
   try {
     const user = await User.findOne({ username: req.params.username });
     const posts = await Post.find({ userId: user._id });
-    res.status(200).json(posts);
+    const topicPosts = await Post.find({topic: user._id});
+    res.status(200).json(posts.concat(...topicPosts));
   } catch (err) {
-    res.status(500).json("is this the error? in posts.js");
+    res.status(500).json("error in posts.js (routes)");
   }
 });
 
