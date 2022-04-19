@@ -5,14 +5,17 @@ const UserSchema = new mongoose.Schema(
     username: {
       type: String,
       require: true,
+      unique: true,
     },
     email: {
       type: String,
       required: true,
       max: 50,
+      unique: true,
     },
     password: {
       type: String,
+      required: true,
       min: 6,
     },
     profilePicture: {
@@ -24,17 +27,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    
     followings: {
       type: Array,
       default: [],
     },
-
-    topicsFollowed: {
-      type: Array,
-      default: [],
-    },
-
     isAdmin: {
       type: Boolean,
       default: false,

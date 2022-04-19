@@ -37,17 +37,6 @@ const AuthReducer = (state, action) => {
           followings: [...state.user.followings, action.payload],
         },
       };
-
-      case "FOLLOWTOPIC":
-        return {
-          ...state,
-          user: {
-            ...state.user,
-            topicsFollowed: [...state.user.topicsFollowed, action.payload],
-          },
-        };
-
-
     case "UNFOLLOW":
       return {
         ...state,
@@ -58,20 +47,6 @@ const AuthReducer = (state, action) => {
           ),
         },
       };
-
-
-      case "UNFOLLOWTOPIC":
-        return {
-          ...state,
-          user: {
-            ...state.user,
-            topicsFollowed: state.user.topicsFollowed.filter(
-              (topic) => topic !== action.payload
-            ),
-          },
-        };
-
-
     default:
       return state;
   }

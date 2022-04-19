@@ -6,9 +6,6 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    topic: {
-      type: String,
-    },
     desc: {
       type: String,
       maxlength: 500, //limits the amount of characters to 500 char
