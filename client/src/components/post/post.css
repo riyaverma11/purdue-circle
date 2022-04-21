@@ -86,3 +86,9 @@
       border-bottom: 1px dashed gray;
       font-size: 15px;
   }
+
+  .commentUsername {
+    font-size: 13px;
+    font-weight: 500;
+    color:black;
+  }
