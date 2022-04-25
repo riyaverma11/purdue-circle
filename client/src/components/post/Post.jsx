@@ -101,7 +101,7 @@ export default function Post({ post }) {
 			);
 
 	return (
-		<div className="post">
+		<div className="post" role="main" aria-label={"This is a post created by " + user.username}>
 			<div className="postWrapper">
 				<div className="postTop">
 					<div className="postTopLeft" aria-label = {"from left to right: user profile picture, username, when it was posted"}>

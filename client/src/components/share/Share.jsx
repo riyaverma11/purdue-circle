@@ -68,7 +68,7 @@ export default function Share() {
     };
 
     return (
-        <div className="share">
+        <div className="share" role="main" aria-label="this is the share box, which is used by users to create posts that have text, image, and/or a topic tag">
             <div className="shareWrapper">
                 <div className="shareTop" aria-label="">
                     <img
@@ -134,7 +134,7 @@ export default function Share() {
                             <span className="shareOptionText">Post as Anonymous</span>
                         </div>
                     </div>
-                    <button className="shareButton" type="submit" >
+                    <button className="shareButton" type="submit" alt="Press the button labeled Share to submit your post so that it shows up on the feed" >
                         Share
                     </button>
                 </form>

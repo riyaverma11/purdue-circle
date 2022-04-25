@@ -101,7 +101,7 @@ export default function Login() {
 
 	
 	return (
-		<div className="login">
+		<div className="login" role="main" aria-label="This is the login page where user type in their email and password to access their account">
 			<div className="loginWrapper">
 				<div className="loginLeft">
 					<h3 className="loginLogo">P u r d u e C i r c l e</h3>

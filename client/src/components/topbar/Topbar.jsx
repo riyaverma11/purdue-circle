@@ -49,19 +49,19 @@ export default function Topbar() {
 		<ThemeProvider theme={themeMode}>
 			<>
 		<GlobalStyles/>
-		<div className="topbarContainer">
-			<div className="topbarLeft">
+		<div className="topbarContainer" role="navigation" aria-label="The topbar contains the following from left to right: the PurdueCircle logo, switch theme button, search bar, search button, logout button, and profile picture button">
+			<div className="topbarLeft" role="navigation" aria-label="when clicked it leads user to home page">
 				<Link to="/home" style={{ textDecoration: "none" }}>
 					<span className="logo">PurdueCircle</span>
 				</Link>
 			</div>
 
-			<div className="switchTheme">
+			<div className="switchTheme" role="button" aria-label="when clicked it chaneges the theme from light to dark and vice versa">
 			<Toggle theme={theme} toggleTheme={themeToggler} />	
 			</div>
 
 			<div className="topbarCenter">
-				<div className="searchbar">
+				<div className="searchbar" role="searchbox" aria-label="this is where users can type in users/topics they are looking for">
 					<Search className="searchIcon" />
 					<input
 						placeholder="Search for friends or topics"
@@ -73,16 +73,16 @@ export default function Topbar() {
 			</div>
 
 			<div className="topbarRight">
-				<button className="searchButton" onClick={handleClick}>
+				<button className="searchButton" onClick={handleClick} role="button" aria-label="when button is clicked, it searches for the user/topic that was written in the search bar">
                    Search
 				</button>
 
-				<Link to="/logout" style={{ textDecoration: "none" }}>
+				<Link to="/logout" style={{ textDecoration: "none" }} role="button" aria-label="when clicked, it logs the user out">
 					<span className="topbarLink">Logout</span>
 				</Link>
 
 				{
-					<Link aria-label=""
+					<Link role="button" aria-label="when this button is clicked, the user is redirected to their profile page"
 						onClick={()=>{window.location.href = '/profile/' + user.username;} }>
 						<img
 							src={

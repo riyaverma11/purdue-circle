@@ -55,7 +55,7 @@ export default function Feed({ username }) {
   }, [username, user._id]);
 
   return (
-    <div className="feed">
+    <div className="feed" role="feed" aria-label="This is the feed. The feed includes the following components: a box where you can share a post and/or image with a topic tag and previous posts that were made">
       <div className="feedWrapper">
         {(!username || username === user.username) && <Share />}
         {posts.map((p) => (

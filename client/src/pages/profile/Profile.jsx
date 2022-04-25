@@ -51,8 +51,8 @@ export default function Profile() {
 		<>
 			<Topbar />
 			<div className="profile">
-				<div className="profileRight">
-					<div className="profileRightTop">
+				<div className="profileRight" role="main" aria-label="contains the users and topics followed">
+					<div className="profileRightTop" role="main" aria-label="contains the cover photo, profile photo, bio, username, and edit profile button">
 						<div className="profileCover" aria-label="">
 							<img
 								className="profileCoverImg"
@@ -92,7 +92,7 @@ export default function Profile() {
 							</Button> */}
 						</div>
 					</div>
-					<div className="profileRightBottom">
+					<div className="profileRightBottom" role="main" aria-label="has the feed of the user and the rightbar">
 						<Feed username={username} />
 						<RightBar user={user} />
 					</div>

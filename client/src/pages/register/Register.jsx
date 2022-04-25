@@ -151,7 +151,7 @@ export default function Register() {
 	};
 
 	return (
-		<div className="register">
+		<div className="register" role="main" aria-label="This is the registration page where user type in all required information to create an account">
 			<div className="registerWrapper">
 				<div className="registerLeft">
 					<h3 className="registerLogo">P u r d u e C i r c l e</h3>

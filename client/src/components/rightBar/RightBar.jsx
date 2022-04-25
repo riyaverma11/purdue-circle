@@ -156,7 +156,7 @@ export default function Rightbar({ user }) {
         )}
         
         {user.username!== user.email && (
-        <div className="rightbarFollowings">
+        <div className="rightbarFollowings" role="main" aria-label={"this rightbar contains the usernames that are followed by " + user.username}>
           
           {friends.map((friend) => (
             <Link
@@ -188,7 +188,7 @@ export default function Rightbar({ user }) {
 
         {user.username!== user.email && (
         
-          <div className="rightbarFollowings">
+          <div className="rightbarFollowings" role="main" aria-label={"this rightbar contains the topics that are followed by " + user.username}>
           {allTopicsFollowed.map((topic) => (
             <Link
             onClick={()=>{window.location.href = '/profile/' + topic.username;} }
