@@ -51,14 +51,23 @@ export default function EditProfile() {
 		}
 	}
 	const handleDelete = async e => {
-		e.preventDefault();
-		try {
-			const res = await axios.delete(`/users/${user._id}`);
-			history.push("/register");
-		} catch (err) {
-			console.log("error with deleting");
-		}
-	};
+        e.preventDefault();
+        try {
+            
+            const allPosts = await axios.get("/posts/profile/" + username);
+            console.log(allPosts);
+            for(let i = 0; i<allPosts.data.length; i++){
+                const post = allPosts.data[i];
+                await axios.delete(`/posts/${post._id}`);
+            }
+
+            const res = await axios.delete(`/users/${user._id}`);
+            history.push("/register");
+        } catch (err) {
+            console.log("error with deleting");
+        }
+    };
+
 
 	const handleEdit = async e => {
 		e.preventDefault();
