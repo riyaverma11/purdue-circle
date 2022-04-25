@@ -70,7 +70,7 @@ export default function Share() {
     return (
         <div className="share">
             <div className="shareWrapper">
-                <div className="shareTop">
+                <div className="shareTop" aria-label="">
                     <img
                         className="shareProfileImg"
                         src={
@@ -79,7 +79,7 @@ export default function Share() {
                                 : //: PF + "person/noAvatar.png"
                                   PF + "person/riya.png"
                         }
-                        alt=""
+                        alt= {user.username + "'s profile picture"}
                     />
                     <textarea
                         placeholder={"What's on your mind " + user.username + "?"}
@@ -95,9 +95,9 @@ export default function Share() {
                     </div>
                 )}
                 <form className="shareBottom" onSubmit={submitHandler}>
-                    <div className="shareOptions">
+                    <div className="shareOptions" aria-label="">
                         <label htmlFor="file" className="shareOption">
-                            <PermMedia htmlColor="tomato" className="shareIcon" />
+                            <PermMedia htmlColor="tomato" className="shareIcon" alt="image of a photo, when clicked it allows user to add an image to their post" />
                             <span className="shareOptionText">Photo</span>
                             <input
                                 style={{ display: "none" }}
@@ -114,6 +114,7 @@ export default function Share() {
                                 placeholder={"Topic"}
                                 className="shareInput"
                                 ref={topic}
+                                
                             />
                         </div>
                         {/*
@@ -121,18 +122,19 @@ export default function Share() {
                             <BookmarkAdd htmlColor="DarkGray" className="shareIcon" />
                             <span className="shareOptionText">Save Post</span>
                         </div>*/}
-                        <div className="shareOption">
+                        <div className="shareOption" aria-label="">
                             {/* <Label htmlColor="green" className="shareIcon" /> */}
                             <input
                                 type="checkbox"
                                 checked={checked}
                                 onChange={handleChange}
+                                alt="clicked it allows user to post anonymously"
                             />
                             &nbsp;
                             <span className="shareOptionText">Post as Anonymous</span>
                         </div>
                     </div>
-                    <button className="shareButton" type="submit">
+                    <button className="shareButton" type="submit" >
                         Share
                     </button>
                 </form>

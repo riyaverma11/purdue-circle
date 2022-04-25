@@ -110,15 +110,15 @@ export default function Rightbar({ user }) {
 
   const HomeRightbar = () => {
     return (
-      <>
-        <img className="rightbarAd" src="assets/ad.png" alt="" />
+      <div aria-label="">
+        <img className="rightbarAd" src="assets/ad.png" alt=""/>
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
           {/* {Users.map((u) => (
             <Online key={u.id} user={u} />
           ))} */}
         </ul>
-      </>
+      </div>
     );
   };
 
@@ -163,14 +163,14 @@ export default function Rightbar({ user }) {
             onClick={()=>{window.location.href = '/profile/' + friend.username;} }
               style={{ textDecoration: "none" }}
             >
-              <div className="rightbarFollowing">
+              <div className="rightbarFollowing" aria-label="">
                 <img
                   src={
                     friend.profilePicture
                       ? PF + friend.profilePicture
                       : PF + "person/riya.png"
                   }
-                  alt=""
+                  alt={friend.username + "'s profile photo; when clicked, it takes you to their profile"}
                   className="rightbarFollowingImg"
                 />
                 <span className="rightbarFollowingName">{friend.username}</span>

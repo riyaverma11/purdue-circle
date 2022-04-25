@@ -92,7 +92,7 @@ export default function EditProfile() {
 			<div className="profile">
 				<div className="profileRight">
 					<div className="profileRightTop">
-						<div className="profileCover">
+						<div className="profileCover" aria-label="">
 							<img
 								className="profileCoverImg"
 								src={
@@ -101,7 +101,7 @@ export default function EditProfile() {
 										: //: PF + "person/noCover.png"
 										  PF + "person/purdueCover.jpeg"
 								}
-								alt=""
+								alt={user.username + "'s cover photo"}
 							/>
 							<img
 								className="profileUserImg"
@@ -111,7 +111,7 @@ export default function EditProfile() {
 										: //: PF + "person/noAvatar.png"
 										  PF + "person/riya.png"
 								}
-								alt=""
+								alt={user.username + "'s profile photo"}
 							/>
 						</div>
 						{/* {user.username} */}

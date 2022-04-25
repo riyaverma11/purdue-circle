@@ -82,7 +82,7 @@ export default function Topbar() {
 				</Link>
 
 				{
-					<Link 
+					<Link aria-label=""
 						onClick={()=>{window.location.href = '/profile/' + user.username;} }>
 						<img
 							src={
@@ -91,7 +91,7 @@ export default function Topbar() {
 									: //: PF + "person/noAvatar.png"
 									PF + "person/riya.png"
 							}
-							alt=""
+							alt={user.username + "'s profile picture; when clicked will take you to the profile page of that user"}
 							className="topbarImg"
 						/>
 					</Link>

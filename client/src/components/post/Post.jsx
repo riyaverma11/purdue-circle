@@ -104,7 +104,7 @@ export default function Post({ post }) {
 		<div className="post">
 			<div className="postWrapper">
 				<div className="postTop">
-					<div className="postTopLeft">
+					<div className="postTopLeft" aria-label = {"from left to right: user profile picture, username, when it was posted"}>
 						<Link to={`/profile/${user.username}`}>
 							<img
 								className="postProfileImg"
@@ -114,7 +114,7 @@ export default function Post({ post }) {
 										: //: PF + "person/noAvatar.png"
 										  PF + "person/riya.png"
 								}
-								alt=""
+								alt= {user.username + "'s profile picture"}
 							/>
 						</Link>
 						<span className="postUsername">{user.username}</span>
@@ -124,7 +124,7 @@ export default function Post({ post }) {
 						<MoreVert />
 					</div>
 				</div>
-				<div className="postCenter">
+				<div className="postCenter" aria-label={"this is an image shared by user: " + user.username}>
 					<span className="postText">{renderText(post.desc)}</span>
 					<img className="postImg" src={PF + post.img} alt="" />
 				</div>
@@ -136,7 +136,7 @@ export default function Post({ post }) {
 				*/}
 
 				<div className="postBottom">
-					<div className="postBottomLeft">
+					<div className="postBottomLeft" aria-label="">
 						{topicName && (
 							<div>
 								<span className="postTopic">{"#" + topicName}</span>
@@ -150,7 +150,7 @@ export default function Post({ post }) {
 							className="likeIcon"
 							src={`${PF}like.png`}
 							onClick={likeHandler}
-							alt=""
+							alt="like button which increases/decreases post like count"
 						/>
 
 						<span className="postLikeCounter">{like} likes</span>
