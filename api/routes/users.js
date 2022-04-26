@@ -156,6 +156,60 @@ router.get("/topicsFollowing/:userId", async (req, res) => { // get all topics u
 });
 
 
+router.get("/savedPosts/:userId", async (req, res) => { // get all saved posts of user
+  try {
+    const user = await User.findById(req.params.userId); // current user
+    
+    const savedPosts1 = await Promise.all(
+      user.savedPosts.map((savedPost) => {
+        return Post.findById(savedPost);
+      })
+    );
+    let savedPostList = [];
+    savedPosts1.map((savedPost1) => {
+      //const { _id, userId, topic, desc, img, likes, comments } = topic1;
+      savedPostList.push(savedPost1);
+    });
+    res.status(200).json(savedPostList)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//save a post -> added now
+router.put("/:id/savePost", async (req, res) => {
+  
+  try {
+    const currentUser = await User.findById(req.body.userId); // yourself
+    if (!currentUser.savedPosts.includes(req.params.id)) { //  can't save same post twice
+      await currentUser.updateOne({ $push: { savedPosts: req.params.id } }); // update savedPosts array
+      return res.status(200).json("Post has been saved!");
+    } else {
+      return res.status(403).json("This post is already saved");
+    }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+
+});
+
+// unsave post
+router.put("/:id/unsavePost", async (req, res) => {
+   
+  try {
+    const currentUser = await User.findById(req.body.userId); // yourself
+    if (currentUser.savedPosts.includes(req.params.id)) {//  post must already be saved
+      await currentUser.updateOne({ $pull: { savedPosts: req.params.id } }); // remove from saved posts
+      return res.status(200).json("Post has been unsaved");
+    } else {
+      return res.status(403).json("You haven't saved this post");
+    }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+
+});
+
 //unfollow a user
 router.put("/:id/unfollow", async (req, res) => {
     if (req.body.userId !== req.params.id) { // can't unfollow yourself
