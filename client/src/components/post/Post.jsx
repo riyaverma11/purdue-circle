@@ -33,14 +33,25 @@ export default function Post({ post }) {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const { user: currentUser, dispatch  } = useContext(AuthContext);
 	const history = useHistory();
+	const[isSaved, setIsSaved] = useState(currentUser.savedPosts.includes(post._id));
 	
 
 	useEffect(() => {
 		setIsLiked(post.likes.includes(currentUser._id));
-		
+	
 		//setIsSaved(currentUser.savedPosts.includes(post._id));
 
 	}, [currentUser._id, post.likes]);
+
+	
+	useEffect(() => {
+	
+		setIsSaved(currentUser.savedPosts.includes(post._id));
+		console.log("issaved = "+isSaved)
+		console.log(currentUser)
+		console.log(post._id)
+
+	}, [currentUser._id, post._id]);
 
 	
 	useEffect(() => {
@@ -51,10 +62,10 @@ export default function Post({ post }) {
 		console.log(post._id);
 		console.log("includes?")
 		console.log(currentUser.savedPosts.includes(post._id));
-		//setIsSaved(currentUser.savedPosts.includes(post._id));
-		if(currentUser.savedPosts.includes(post._id)){
+		setIsSaved(currentUser.savedPosts.includes(post._id));
+		if(isSaved){
 			console.log("entered if")
-			setSaveStatus("saved");
+			setSaveStatus("saved ");
 		}else{
 			setSaveStatus("");
 		}
@@ -123,11 +134,15 @@ export default function Post({ post }) {
 
 
 	const savePostHandler = () => {
-
-		console.log("current user");
+        //const tempUser = axios
+		console.log("test 1");
 		console.log(currentUser);
-		
-		if(!(currentUser.savedPosts.includes(post._id))){
+		console.log("test 2");
+		console.log(currentUser.savedPosts);
+		console.log("test 3");
+		console.log(post._id);
+		setIsSaved(currentUser.savedPosts.includes(post._id));
+		if(!isSaved){
 			try{	
 				// add to savedPosts array
 				//"/:id/savePost"
@@ -135,8 +150,9 @@ export default function Post({ post }) {
 				axios.put("/users/" + currentUser._id + "/savePost", {
 					id: post._id,
 				  });
+				  setSaveStatus("saved ");
 				  
-				  dispatch({ type: "SAVEPOST", payload: user._id });
+				 dispatch({ type: "SAVEPOST", payload: post._id });
 				  console.log("saved:");
 				  console.log(currentUser.savedPosts);
 
@@ -144,16 +160,18 @@ export default function Post({ post }) {
 		}else{
 			try{	
 				// remove to savedPosts array
+
 				axios.put("/users/" + currentUser._id + "/unsavePost", {
 					id: post._id,
 				  });
-				  
-				  dispatch({ type: "UNSAVEPOST", payload: currentUser._id });
+				  setSaveStatus("");
+				 dispatch({ type: "UNSAVEPOST", payload: post._id });
 				  console.log("unsaved:");
 				  console.log(currentUser.savedPosts);
 
 			}catch(err){console.log(err)}
 		}
+		setIsSaved(!isSaved);
 		
 
 	};
@@ -226,7 +244,7 @@ export default function Post({ post }) {
 							alt="save post button which saves/unsaves post"
 						/>
 
-						<span className="postLikeCounter">{saveStatus}</span>
+						<span className="postLikeCounter">{isSaved ? "saved ":""}</span>
 						
 						<img
 							className="likeIcon"

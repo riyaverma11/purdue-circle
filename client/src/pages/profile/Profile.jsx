@@ -39,6 +39,15 @@ export default function Profile() {
 	</Link>)
 	}
 
+    let btnElem2
+	if (username == currentUser.username) {
+		btnElem2 = (<Link to={`/profile/${user.username}/savedPosts`}>
+		<Button variant="contained" className="editProfileBtn">
+			Saved Posts
+		</Button>
+	</Link>)
+	}
+
 	useEffect(() => {
 		const fetchUser = async () => {
 			const res = await axios.get(`/users?username=${username}`);
@@ -83,6 +92,7 @@ export default function Profile() {
 
 							<div className="spacer"></div>
 							{btnElem}
+							{btnElem2}
 							{/* TODO: Write the condition to show Edit Profile/Follow/Unfollow button here */}
 							{/* <Button variant="contained" className="editProfileBtn">
 								Follow

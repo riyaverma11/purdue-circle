@@ -86,7 +86,7 @@ const AuthReducer = (state, action) => {
           ...state,
           user: {
             ...state.user,
-            savedPosts: state.user.savePosts.filter(
+            savedPosts: state.user.savedPosts.filter(
               (post) => post !== action.payload
             ),
           },
