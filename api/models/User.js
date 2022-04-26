@@ -35,6 +35,11 @@ const UserSchema = new mongoose.Schema(
       default: [],
     },
 
+    savedPosts: {
+      type: Array,
+      default: [],
+    },
+
     isAdmin: {
       type: Boolean,
       default: false,
@@ -44,11 +49,6 @@ const UserSchema = new mongoose.Schema(
       max: 50,
     },
 
-    savedPosts: {
-      type: Array,
-      default: [],
-    },
-  
    
   },
   { timestamps: true }

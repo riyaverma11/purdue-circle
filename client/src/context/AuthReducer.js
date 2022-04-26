@@ -48,6 +48,16 @@ const AuthReducer = (state, action) => {
         };
 
 
+      case "SAVEPOST":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            savedPosts: [...state.user.savedPosts, action.payload],
+          },
+        };
+
+
     case "UNFOLLOW":
       return {
         ...state,
@@ -67,6 +77,17 @@ const AuthReducer = (state, action) => {
             ...state.user,
             topicsFollowed: state.user.topicsFollowed.filter(
               (topic) => topic !== action.payload
+            ),
+          },
+        };
+
+        case "UNSAVEPOST":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            savedPosts: state.user.savePosts.filter(
+              (post) => post !== action.payload
             ),
           },
         };

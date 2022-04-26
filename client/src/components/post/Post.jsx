@@ -23,6 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Post({ post }) {
 	const [like, setLike] = useState(post.likes.length);
+	const [saveStatus, setSaveStatus] = useState();
 	const [commentObjs, setCommentObjs] = useState(post.comments);
 	const [isLiked, setIsLiked] = useState(false);
 	const [user, setUser] = useState({});
@@ -30,12 +31,36 @@ export default function Post({ post }) {
 	const [showComments, setShowComments] = useState(false);
 	const [newComment, setNewComment] = useState("");
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-	const { user: currentUser } = useContext(AuthContext);
+	const { user: currentUser, dispatch  } = useContext(AuthContext);
 	const history = useHistory();
+	
 
 	useEffect(() => {
 		setIsLiked(post.likes.includes(currentUser._id));
+		
+		//setIsSaved(currentUser.savedPosts.includes(post._id));
+
 	}, [currentUser._id, post.likes]);
+
+	
+	useEffect(() => {
+		console.log("currentUser inside useEffect");
+		console.log(currentUser);
+		console.log("savedPosts");
+		console.log(currentUser.savedPosts);
+		console.log(post._id);
+		console.log("includes?")
+		console.log(currentUser.savedPosts.includes(post._id));
+		//setIsSaved(currentUser.savedPosts.includes(post._id));
+		if(currentUser.savedPosts.includes(post._id)){
+			console.log("entered if")
+			setSaveStatus("saved");
+		}else{
+			setSaveStatus("");
+		}
+
+		
+	}, [currentUser.savedPosts, post._id]);
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -53,6 +78,9 @@ export default function Post({ post }) {
 		};
 		fetchTopicName();
 	}, [post.topic]);
+
+
+	
 
 	const showCommentsToggle = () => {
 		if (showComments) {
@@ -92,6 +120,46 @@ export default function Post({ post }) {
 		setLike(isLiked ? like - 1 : like + 1);
 		setIsLiked(!isLiked);
 	};
+
+
+	const savePostHandler = () => {
+
+		console.log("current user");
+		console.log(currentUser);
+		
+		if(!(currentUser.savedPosts.includes(post._id))){
+			try{	
+				// add to savedPosts array
+				//"/:id/savePost"
+				
+				axios.put("/users/" + currentUser._id + "/savePost", {
+					id: post._id,
+				  });
+				  
+				  dispatch({ type: "SAVEPOST", payload: user._id });
+				  console.log("saved:");
+				  console.log(currentUser.savedPosts);
+
+			}catch(err){console.log(err)}
+		}else{
+			try{	
+				// remove to savedPosts array
+				axios.put("/users/" + currentUser._id + "/unsavePost", {
+					id: post._id,
+				  });
+				  
+				  dispatch({ type: "UNSAVEPOST", payload: currentUser._id });
+				  console.log("unsaved:");
+				  console.log(currentUser.savedPosts);
+
+			}catch(err){console.log(err)}
+		}
+		
+
+	};
+
+
+
 
 	const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
@@ -149,10 +217,17 @@ export default function Post({ post }) {
 								<span className="postTopic">{"#" + topicName}</span>
 							</div>
 						)}
-						<div className="shareOption">
-							<BookmarkAdd htmlColor="DarkGray" className="shareIcon" />
-							<span className="shareOptionText">Save Post</span>
-						</div>
+
+
+						<img
+							className="likeIcon"
+							src={`${PF}savePost.png`}
+							onClick={savePostHandler}
+							alt="save post button which saves/unsaves post"
+						/>
+
+						<span className="postLikeCounter">{saveStatus}</span>
+						
 						<img
 							className="likeIcon"
 							src={`${PF}like.png`}
@@ -162,6 +237,7 @@ export default function Post({ post }) {
 
 						<span className="postLikeCounter">{like} likes</span>
 					</div>
+
 					<div className="postBottomRight">
 						<span className="postCommentText" onClick={showCommentsToggle}>
 							{post.comment} comments

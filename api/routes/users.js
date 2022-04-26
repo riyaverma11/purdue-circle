@@ -180,15 +180,22 @@ router.get("/savedPosts/:userId", async (req, res) => { // get all saved posts o
 router.put("/:id/savePost", async (req, res) => {
   
   try {
-    const currentUser = await User.findById(req.body.userId); // yourself
-    if (!currentUser.savedPosts.includes(req.params.id)) { //  can't save same post twice
-      await currentUser.updateOne({ $push: { savedPosts: req.params.id } }); // update savedPosts array
+    const currentUser = await User.findById(req.params.id); // yourself
+    console.log("currentUser")
+    console.log(currentUser);
+
+    console.log("save post")
+    console.log(req.body.id);
+    if (!currentUser.savedPosts.includes(req.body.id)) { //  can't save same post twice
+      console.log("entered save post if")
+      await currentUser.updateOne({ $push: { savedPosts: req.body.id } }); // update savedPosts array
+      console.log(currentUser.savedPosts)
       return res.status(200).json("Post has been saved!");
     } else {
       return res.status(403).json("This post is already saved");
     }
   } catch (err) {
-    return res.status(500).json(err);
+    return res.status(600).json(err);
   }
 
 });
@@ -197,9 +204,10 @@ router.put("/:id/savePost", async (req, res) => {
 router.put("/:id/unsavePost", async (req, res) => {
    
   try {
-    const currentUser = await User.findById(req.body.userId); // yourself
-    if (currentUser.savedPosts.includes(req.params.id)) {//  post must already be saved
-      await currentUser.updateOne({ $pull: { savedPosts: req.params.id } }); // remove from saved posts
+    const currentUser = await User.findById(req.params.id); // yourself
+    if (currentUser.savedPosts.includes(req.body.id)) {//  post must already be saved
+      console.log("entered unsave post if")
+      await currentUser.updateOne({ $pull: { savedPosts: req.body.id } }); // remove from saved posts
       return res.status(200).json("Post has been unsaved");
     } else {
       return res.status(403).json("You haven't saved this post");
