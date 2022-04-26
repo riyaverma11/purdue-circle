@@ -11,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,6 +31,7 @@ export default function Post({ post }) {
 	const [newComment, setNewComment] = useState("");
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const { user: currentUser } = useContext(AuthContext);
+	const history = useHistory();
 
 	useEffect(() => {
 		setIsLiked(post.likes.includes(currentUser._id));
@@ -100,6 +102,11 @@ export default function Post({ post }) {
 				URL_REGEX.test(part) ? <a href={part}>{part} </a> : part + " "
 			);
 
+	const redirect = () => {
+			history.push(`/clickedPost/${post._id}`); 
+	};
+		
+
 	return (
 		<div className="post" role="main" aria-label={"This is a post created by " + user.username}>
 			<div className="postWrapper">
@@ -124,7 +131,7 @@ export default function Post({ post }) {
 						<MoreVert />
 					</div>
 				</div>
-				<div className="postCenter" aria-label={"this is an image shared by user: " + user.username}>
+				<div className="postCenter" onClick={redirect} aria-label={"this is an image shared by user: " + user.username}>
 					<span className="postText">{renderText(post.desc)}</span>
 					<img className="postImg" src={PF + post.img} alt="" />
 				</div>

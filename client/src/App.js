@@ -6,6 +6,7 @@ import Register from "./pages/register/Register";
 import Search from "./pages/search/search";
 import Logout from "./pages/logout/Logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ClickedPost from "./pages/profile/clickedPost";
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
 				</Route>
 				<Route path="/search">
 					<Search />
+				</Route>
+				<Route path="/clickedPost/:id">
+					<ClickedPost />
 				</Route>
 
 				<Route path="/logout">
