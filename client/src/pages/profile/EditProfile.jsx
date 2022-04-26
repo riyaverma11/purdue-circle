@@ -101,6 +101,7 @@ export default function EditProfile() {
 			<div className="profile">
 				<div className="profileRight">
 					<div className="profileRightTop">
+						
 						<div className="profileCover" aria-label="">
 							<img
 								className="profileCoverImg"
@@ -134,18 +135,21 @@ export default function EditProfile() {
 								<input type="file" hidden />
 							</Button>
 
+							<div className="editProfileInfo">
 							<TextField
 								id="outlined-basic"
 								label="Username"
 								variant="outlined"
 								inputRef={usernameInput}
 								onBlur={validateUsername}
-								style={{ marginTop: "3vh" }}
+								/*style={{ marginTop: "3vh" }}*/
 							/>
+							</div>
 							<div id="unameError" style={{ color: "red" }}></div>
 							<small className="inputDesc">
 								Username length is restricted to 16 characters.
 							</small>
+							<div className="editProfileInfo">
 							{/* <span className="profileInfoDesc">Bio</span> */}
 							<TextField
 								id="outlined-multiline-static"
@@ -154,6 +158,7 @@ export default function EditProfile() {
 								rows={4}
 								inputRef={bioInput}
 							/>
+							</div>
 							{/* <div id="unameError" style={{ color: "red" }}></div>
 							<InputLabel style={{ textAlign: "center" }}>
 								Username length is restricted to 16 characters.
