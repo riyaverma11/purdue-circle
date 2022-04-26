@@ -118,8 +118,8 @@ export default function EditProfile() {
 								src={
 									user.profilePicture
 										? user.profilePicture
-										: //: PF + "person/noAvatar.png"
-										  PF + "person/riya.png"
+										: PF + "person/noAvatar.png"
+										//:  PF + "person/riya.png"
 								}
 								alt={user.username + "'s profile photo"}
 							/>
