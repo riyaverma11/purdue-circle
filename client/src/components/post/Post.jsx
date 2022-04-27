@@ -114,6 +114,10 @@ export default function Post({ post }) {
 		console.log(newCommentObj);
 		try {
 			await axios.put("/posts/" + post._id + "/comment", newCommentObj);
+			axios.put("/users/"+ currentUser._id +"/LikePost", {
+				id: post._id,
+			  });
+			  dispatch({ type: "LIKEPOST", payload: post._id });
 			console.log("comment posted");
 			const res = await axios.get(`/posts/comments/${post._id}`);
 			setCommentObjs(res.data);
@@ -125,9 +129,24 @@ export default function Post({ post }) {
 	};
 
 	const likeHandler = () => {
-		try {
-			axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
-		} catch (err) {}
+		if(!isLiked) {
+			try {
+				axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+				axios.put("/users/"+ currentUser._id +"/LikePost", {
+					id: post._id,
+				  });
+				  dispatch({ type: "LIKEPOST", payload: post._id });
+			} catch (err) {console.log(err)}
+		} else {
+			try {
+				axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+				axios.put("/users/"+ currentUser._id +"/unLikePost", {
+					id: post._id,
+				  });
+				  dispatch({ type: "UNLIKEPOST", payload: post._id });
+			} catch (err) {console.log(err)}
+		}
+		
 		setLike(isLiked ? like - 1 : like + 1);
 		setIsLiked(!isLiked);
 	};

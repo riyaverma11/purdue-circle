@@ -93,6 +93,27 @@ const AuthReducer = (state, action) => {
         };
 
 
+        case "LIKEPOST":
+          return {
+            ...state,
+            user: {
+              ...state.user,
+              interactions: [...state.user.interactions, action.payload],
+            },
+          };
+
+        case "UNLIKEPOST":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            interactions: state.user.interactions.filter(
+              (post) => post !== action.payload
+            ),
+          },
+        };
+
+
     default:
       return state;
   }

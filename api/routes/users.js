@@ -206,6 +206,30 @@ router.put("/:id/savePost", async (req, res) => {
 
 });
 
+router.put("/:id/LikePost", async (req, res) => {
+  
+  console.log("test params")
+    console.log(req.params.id);
+
+    console.log("test body")
+    console.log(req.body.id);
+  try {
+    const currentUser = await User.findById(req.params.id); // yourself
+    console.log(currentUser);
+    if (!currentUser.interactions.includes(req.body.id)) { //  can't save same post twice
+      console.log("entered save post if")
+      await currentUser.updateOne({ $push: { interactions: req.body.id } }); // update savedPosts array
+      //console.log(currentUser.savedPosts)
+      return res.status(200).json("Post has been added!");
+    } else {
+      return res.status(457).json("This post is already added");
+    }
+  } catch (err) {
+    return res.status(600).json(err);
+  }
+
+});
+
 // unsave post
 router.put("/:id/unsavePost", async (req, res) => {
    
@@ -217,6 +241,36 @@ router.put("/:id/unsavePost", async (req, res) => {
       return res.status(200).json("Post has been unsaved");
     } else {
       return res.status(403).json("You haven't saved this post");
+    }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+
+});
+
+router.put("/:id/unLikePost", async (req, res) => {
+   
+  try {
+    const currentUser = await User.findById(req.params.id); // yourself
+    if (currentUser.interactions.includes(req.body.id)) {//  post must already be saved
+      const post = await Post.findById(req.body.id);
+      let flag = 0
+      for(let i = 0; i < post.comments.length; i++) {
+        if(post.comments[i].username == currentUser.username) {
+          flag = 1
+        }
+      }
+      console.log("entered unsave post if")
+      if(flag == 0 ) {
+        await currentUser.updateOne({ $pull: { interactions: req.body.id } }); // remove from saved posts
+      return res.status(200).json("Post has been unliked");
+      } else {
+        return res.status(200).json("There is a comment");
+      }
+      
+      return res.status(200).json("Post has been unliked");
+    } else {
+      return res.status(403).json("You haven't liked this post");
     }
   } catch (err) {
     return res.status(500).json(err);

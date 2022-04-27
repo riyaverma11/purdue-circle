@@ -30,7 +30,13 @@ const UserSchema = new mongoose.Schema(
       default: [],
     },
 
+
     topicsFollowed: {
+      type: Array,
+      default: [],
+    },
+
+    interactions: {
       type: Array,
       default: [],
     },
@@ -39,6 +45,8 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+
+
 
     isAdmin: {
       type: Boolean,
