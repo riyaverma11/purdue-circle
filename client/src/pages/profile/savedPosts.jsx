@@ -41,7 +41,7 @@ export default function SavedPosts() {
             const res= await axios.get("/users/savedPosts/" +username);
             console.log("here" + res.data);
             let postArray = [];
-            for(let i = 0; i<res.data.length; i++){
+            for(let i = res.data.length-1; i>=0; i--){
                 const post = res.data[i]; 
                 postArray.push(post);
             }

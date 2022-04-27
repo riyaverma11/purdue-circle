@@ -41,11 +41,16 @@ export default function Interactions() {
             const res= await axios.get("/users/interactions/" +username);
             console.log("here" + res.data);
             let postArray = [];
-            for(let i = 0; i<res.data.length; i++){
+            for(let i = res.data.length-1; i>=0; i--){
                 const post = res.data[i]; 
                 postArray.push(post);
             }
             setPosts(postArray);
+            /*setPosts(
+                postArray.sort((p1, p2) => {
+                  return new Date(p2.createdAt) - new Date(p1.createdAt);
+                })
+              );*/
             
         }
         fetchPosts();
