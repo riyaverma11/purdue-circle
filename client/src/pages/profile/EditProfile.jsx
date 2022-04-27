@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 export default function EditProfile() {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const [user, setUser] = useState({});
+    const [file, setFile] = useState(null);
 
 	const history = useHistory();
 	var urlString = window.location.href;
@@ -79,7 +80,7 @@ export default function EditProfile() {
 				axios.put("/users/" + user._id, {
 					username: usernameInput.current.value
 				});
-				history.push("/login");
+				//history.push("/login");
 			} catch (err) {
 				console.log("error with editing username");
 			}
@@ -88,13 +89,32 @@ export default function EditProfile() {
 		if (bioInput.current.value.length != 0) {
 			try {
 				axios.put("/users/" + user._id, { desc: bioInput.current.value });
-				history.push("/login");
+				//history.push("/login");
 			} catch (err) {
 				console.log("error with editing bio");
 			}
 		}
 
-		//history.push("/home");
+		console.log("file: ");
+		console.log(file);
+		if (file) {
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("name", fileName);
+            data.append("file", file);
+            
+            try {
+                axios.put("/users/" + user._id, { profilePicture:fileName });
+            } catch (err) {
+				console.log("error pushing filename");
+			}
+
+			try {
+                await axios.post("/upload2", data);
+            } catch (err) {console.log("error uploading filename");}
+        }
+
+		history.push("/login");
 	};
 
 	return (
@@ -119,7 +139,7 @@ export default function EditProfile() {
 								className="profileUserImg"
 								src={
 									user.profilePicture
-										? user.profilePicture
+										? PF + "person/" + user.profilePicture
 										: PF + "person/noAvatar.png"
 										//:  PF + "person/riya.png"
 								}
@@ -132,9 +152,17 @@ export default function EditProfile() {
 								variant="contained"
 								className="editProfileBtn"
 								component="label"
+								//onClick={handleImage}
 							>
 								Upload New Image
-								<input type="file" hidden />
+								{/*<input type="file"id="profilePic" name="profilePic" accept="image/png, image/jpeg"></input>*/}
+								<input
+                                style={{ display: "none" }}
+                                type="file"
+                                id="file"
+                                accept=".png,.jpeg,.jpg"
+                                onChange={e => setFile(e.target.files[0])}
+                            />
 							</Button>
 
 							<div className="editProfileInfo">

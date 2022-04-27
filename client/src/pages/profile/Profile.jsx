@@ -18,8 +18,11 @@ export default function Profile() {
 	var urlString = window.location.href;
 	let lastIndex = urlString.lastIndexOf("/") + 1;
 	const username = urlString.substring(lastIndex);
+	console.log("username")
+	console.log(username)
 	console.log("User = ");
 	console.log(user);
+	console.log("CurrentUser = ")
 	console.log(currentUser);
 
 	useEffect(() => {
@@ -49,12 +52,13 @@ export default function Profile() {
 	}
 
 	let btnElem3
+	if (username == currentUser.username) {
 		btnElem3 = (<Link to={`/profile/${user.username}/interactions`}>
 		<Button variant="contained" className="editProfileBtn">
 			Post Interactions
 		</Button>
 	</Link>)
-	
+	}
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -71,6 +75,7 @@ export default function Profile() {
 				<div className="profileRight" role="main" aria-label="contains the users and topics followed">
 					<div className="profileRightTop" role="main" aria-label="contains the cover photo, profile photo, bio, username, and edit profile button">
 						<div className="profileCover" aria-label="">
+					
 							<img
 								className="profileCoverImg"
 								src={
@@ -81,16 +86,19 @@ export default function Profile() {
 								}
 								alt={user.username + "'s cover photo"}
 							/>
+						
+							{user.username !== currentUser.username && (user.username!==user.email) && (
 							<img
 								className="profileUserImg"
 								src={
 									user.profilePicture
-										? user.profilePicture
+										? PF + "person/"+ user.profilePicture
 										: PF + "person/noAvatar.png"
 										//:  PF + "person/riya.png"
 								}
-								alt={user.username + "'s cover photo"}
+								alt={user.username + "'s profile photo"}
 							/>
+							)}
 						</div>
 
 						<div className="profileInfo">

@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({ 
     destination: (req, file, cb) => {
       cb(null, "public/images");
     },
@@ -40,9 +40,31 @@ const storage = multer.diskStorage({
       cb(null, req.body.name);
     },
   });
+
+
+  const storage2 = multer.diskStorage({ 
+    destination: (req, file, cb) => {
+      cb(null, "public/images/person");
+    },
+    filename: (req, file, cb) => {
+      cb(null, req.body.name);
+    },
+  });
+
   
   const upload = multer({ storage: storage });
   app.post("/api/upload", upload.single("file"), (req, res) => {
+    try {
+      return res.status(200).json("File uploded successfully");
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+
+    
+  const upload2 = multer({ storage: storage2 });
+  app.post("/api/upload2", upload2.single("file"), (req, res) => {
     try {
       return res.status(200).json("File uploded successfully");
     } catch (error) {
