@@ -181,6 +181,31 @@ router.get("/savedPosts/:username", async (req, res) => { // get all saved posts
   }
 });
 
+router.get("/interactions/:username", async (req, res) => { // get all saved posts of user
+  console.log("PARAMS=")
+  console.log(req.params.username);
+  
+  try {
+    const user = await User.findOne({ username: req.params.username }); // current user
+    
+    const interactions1= await Promise.all(
+      user.interactions.map((interaction) => {
+        return Post.findById(interaction);
+      })
+    );
+    let interactionPostList = [];
+    console.log(" here" +user.username)
+    interactions1.map((interaction1) => {
+      //const { _id, userId, topic, desc, img, likes, comments } = topic1;
+      interactionPostList.push(interaction1);
+    });
+    res.status(200).json(interactionPostList)
+  } catch (err) {
+    res.status(450).json(err);
+  }
+});
+
+
 //save a post -> added now
 router.put("/:id/savePost", async (req, res) => {
   

@@ -48,6 +48,14 @@ export default function Profile() {
 	</Link>)
 	}
 
+	let btnElem3
+		btnElem3 = (<Link to={`/profile/${user.username}/interactions`}>
+		<Button variant="contained" className="editProfileBtn">
+			Post Interactions
+		</Button>
+	</Link>)
+	
+
 	useEffect(() => {
 		const fetchUser = async () => {
 			const res = await axios.get(`/users?username=${username}`);
@@ -90,9 +98,9 @@ export default function Profile() {
 							<span className="profileInfoDesc">{user.desc}</span>
 							{/* TODO: Replace username with username variable here */}
 
-							<div className="spacer"></div>
-							{btnElem}
-							<div  className="spacer">{btnElem2}</div>
+							<div className="spacer">{btnElem}        {btnElem2}        {btnElem3}</div>
+
+
 							{/* TODO: Write the condition to show Edit Profile/Follow/Unfollow button here */}
 							{/* <Button variant="contained" className="editProfileBtn">
 								Follow

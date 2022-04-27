@@ -8,6 +8,7 @@ import Logout from "./pages/logout/Logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ClickedPost from "./pages/profile/clickedPost";
 import SavedPosts from "./pages/profile/savedPosts";
+import Interactions from "./pages/profile/interactions";
 
 function App() {
 
@@ -40,6 +41,10 @@ function App() {
 				</Route>
 				<Route path="/profile/:username/savedPosts">
 					<SavedPosts />
+				</Route>
+
+				<Route path="/profile/:username/interactions">
+					<Interactions />
 				</Route>
 
 				<Route path="/logout">
