@@ -168,7 +168,7 @@ export default function Rightbar({ user }) {
                   src={
                     friend.profilePicture
                       ? PF + "person/" + friend.profilePicture
-                      : PF + "person/riya.png"
+                      : PF + "person/noAvatar.png"
                   }
                   alt={friend.username + "'s profile photo; when clicked, it takes you to their profile"}
                   className="rightbarFollowingImg"
