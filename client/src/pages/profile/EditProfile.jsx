@@ -17,6 +17,8 @@ export default function EditProfile() {
 	var urlString2 = urlString.substring(0, lastIndex - 1);
 	let lastIndex2 = urlString2.lastIndexOf("/") + 1;
 	const username = urlString2.substring(lastIndex2);
+	console.log("username=");
+	console.log(username);
 	const [usernameEdit, setUsername] = useState(user.username);
 	const [bioEdit, setBio] = useState(user.desc);
 

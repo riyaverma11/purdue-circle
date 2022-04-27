@@ -85,3 +85,11 @@
 	background-color: white;
 	margin-top: 3vh;
 }
+
+.feed{
+    flex:5.5
+}
+
+.feedWrapper{
+    padding: 20px;
+}

@@ -1,34 +1,62 @@
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
-import Post from "../../components/post/Post";
-import { useEffect, useState } from "react";
+import Feed from "../../components/feed/Feed";
+import { Button, TextField, InputLabel } from "@mui/material";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-
+import Post from "../../components/post/Post";
+import { useParams } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 export default function SavedPosts() {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+	const [user, setUser] = useState({});
     const [posts, setPosts] = useState([]);
-    const [returnPost, setPost] = useState([]);
-    var urlString = window.location.href;
-    let lastIndex = urlString.lastIndexOf("/") + 1;
-    const id = urlString.substring(lastIndex);
+	const history = useHistory();
+
+	var urlString = window.location.href;
+	let lastIndex = urlString.lastIndexOf("/") + 1;
+	var urlString2 = urlString.substring(0, lastIndex - 1);
+	let lastIndex2 = urlString2.lastIndexOf("/") + 1;
+	const username = urlString2.substring(lastIndex2);
+	console.log("username=");
+	console.log(username);
+
+    
+
+	// useEffect(() => {
+	// 	const fetchUser = async () => {
+	// 		const res = await axios.get(`/users?username=${username}`);
+	// 		setUser(res.data);
+	// 	};
+	// 	fetchUser();
+	// }, [username]);
+    
+    
+
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const res= await axios.get(`/posts/${id}`);
-            console.log(res.data);
+            const res= await axios.get("/users/savedPosts/" +username);
+            console.log("here" + res.data);
             let postArray = [];
-            postArray.push(res.data);
+            for(let i = 0; i<res.data.length; i++){
+                const post = res.data[i]; 
+                postArray.push(post);
+            }
             setPosts(postArray);
-            console.log(posts)
-        };
+            
+        }
         fetchPosts();
-    }, []);
+    }, [username]);
+    
+    
 
     return (
         <>
             <Topbar />
-            <div className="profileRightBottom">
+            <div className="feedWrapper">
                 {posts.map((p) => (
                     <Post key={p._id} post={p} />
                 ))}

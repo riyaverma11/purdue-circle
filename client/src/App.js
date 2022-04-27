@@ -38,7 +38,7 @@ function App() {
 				<Route path="/clickedPost/:id">
 					<ClickedPost />
 				</Route>
-				<Route path="/savedPosts/:id">
+				<Route path="/profile/:username/savedPosts">
 					<SavedPosts />
 				</Route>
 

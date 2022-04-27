@@ -80,6 +80,11 @@
   .postLikeCounter{
       font-size: 15px;
   }
+
+  .postSave{
+    margin-right: 5px;
+    font-size: 15px;
+}
   
   .postCommentText{
       cursor: pointer;

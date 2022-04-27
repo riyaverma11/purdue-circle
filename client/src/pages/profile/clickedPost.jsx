@@ -12,6 +12,7 @@ export default function ClickedPost() {
     var urlString = window.location.href;
     let lastIndex = urlString.lastIndexOf("/") + 1;
     const id = urlString.substring(lastIndex);
+    
 
     useEffect(() => {
         const fetchPosts = async () => {

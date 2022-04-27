@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const Post = require("../models/Post");
 // all user operations ,, CRUD here
 
 //update user
@@ -156,9 +157,12 @@ router.get("/topicsFollowing/:userId", async (req, res) => { // get all topics u
 });
 
 
-router.get("/savedPosts/:userId", async (req, res) => { // get all saved posts of user
+router.get("/savedPosts/:username", async (req, res) => { // get all saved posts of user
+  console.log("PARAMS=")
+  console.log(req.params.username);
+  
   try {
-    const user = await User.findById(req.params.userId); // current user
+    const user = await User.findOne({ username: req.params.username }); // current user
     
     const savedPosts1 = await Promise.all(
       user.savedPosts.map((savedPost) => {
@@ -166,13 +170,14 @@ router.get("/savedPosts/:userId", async (req, res) => { // get all saved posts o
       })
     );
     let savedPostList = [];
+    console.log(" here" +user.username)
     savedPosts1.map((savedPost1) => {
       //const { _id, userId, topic, desc, img, likes, comments } = topic1;
       savedPostList.push(savedPost1);
     });
     res.status(200).json(savedPostList)
   } catch (err) {
-    res.status(500).json(err);
+    res.status(450).json(err);
   }
 });
 

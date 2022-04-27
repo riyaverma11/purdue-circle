@@ -150,7 +150,7 @@ export default function Post({ post }) {
 				axios.put("/users/" + currentUser._id + "/savePost", {
 					id: post._id,
 				  });
-				  setSaveStatus("saved ");
+				  setSaveStatus("saved");
 				  
 				 dispatch({ type: "SAVEPOST", payload: post._id });
 				  console.log("saved:");
@@ -244,7 +244,7 @@ export default function Post({ post }) {
 							alt="save post button which saves/unsaves post"
 						/>
 
-						<span className="postLikeCounter">{isSaved ? "saved ":""}</span>
+						<span className="postSave">{isSaved ? "saved ":""}</span>
 						
 						<img
 							className="likeIcon"

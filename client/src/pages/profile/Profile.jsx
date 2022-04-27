@@ -92,7 +92,7 @@ export default function Profile() {
 
 							<div className="spacer"></div>
 							{btnElem}
-							{btnElem2}
+							<div  className="spacer">{btnElem2}</div>
 							{/* TODO: Write the condition to show Edit Profile/Follow/Unfollow button here */}
 							{/* <Button variant="contained" className="editProfileBtn">
 								Follow
