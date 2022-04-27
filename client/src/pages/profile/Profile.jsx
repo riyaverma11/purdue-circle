@@ -87,7 +87,7 @@ export default function Profile() {
 								alt={user.username + "'s cover photo"}
 							/>
 						
-							{user.username !== currentUser.username && (user.username!==user.email) && (
+							{(user.username!==user.email) && (
 							<img
 								className="profileUserImg"
 								src={
