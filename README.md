@@ -14,12 +14,9 @@ Here's a link to our demo: *coming soon*
 - Each user has some sort of a profile containing a brief bio, a display image, and topics of their interest
 - The length of the username is restricted
 
-### 2. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+### 2. Authentication
+- Users are able to login using a combination of their email and password
+- Passwords are encrypted and **not** stored in plain text
 
 ### 3. Registering user accounts
 - Registration page creates a user's profile on Concert Tracker
