@@ -18,65 +18,31 @@ Here's a link to our demo: *coming soon*
 - Users are able to login using a combination of their email and password
 - Passwords are encrypted and **not** stored in plain text
 
-### 3. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+### 3. Editing user profile
+- An authenticated (logged-in) user is able to edit their own profile
+- Unauthorized edits **are not** permitted (user1 cannot make edits to user2's profile)
+- Invalid data (e.g., invalid email address) **is not** accepted
 
 ### 4. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 5. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 6. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 7. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 8. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 9. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 10. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
 
 ### 11. Registering user accounts
-- Registration page creates a user's profile on Concert Tracker
-  - Gathers email, password, username, name, age, and favorite artist
-  - Creates an entry in the Users table of our database (DB)
-- Login/Logout
-  - Saves user's data so that the next time they log in, everything is as it was
+- 
