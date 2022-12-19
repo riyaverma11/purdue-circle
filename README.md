@@ -55,13 +55,25 @@ Here's a link to our demo: *coming soon*
   - Commenting on the post
 
 ### 9A. Show the profile of a selected user to any user (logged-in or not)
-- 
+- The profile of a user shows their profile picture and public information
+- The profile **will not** display sensitive information like email and phone number
+- The profile displays a follow/unfollow button if the viewier is logged in
 
 ### 9B. Show a user's userline when we click on timeline from the profile page (only logged-in viewers)
-- 
+- Recent posts are shown before older posts
+- The timeline of a user has two options; first showing all the posts that they created and the second showing all the interactions they had with posts created by other people
+- If user1, a user looking at user2's timeline, clicks on a post, then user1 should be taken to that post's page
 
 ### 10. Basic responsive user interface
-- 
+- Client is a web-page, but can be viewed with proper formatting as Android/IOS app
+- UI adheres to the following basic formatting guidelines:
+  - All fields in a form need to have associated labels
+  - No two fields/labels should overlap
+  - Formatting of links should identify them as such
+  - Images have to be properly oriented
+  - Buttons/controls should be clearly visibile
+  - Error messages must be displayed as HTML text instead of broswer's "alert" message
+  - UI elemnts (links etc) corresponding to functionalithy that require login should not be visibile to users who are **not** logged in
 
 ### 11. Aesthetics, compatibility, and accessibility
 - Supports at least two various color schemes in the UI (dark and light modes)
