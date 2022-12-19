@@ -23,26 +23,29 @@ Here's a link to our demo: *coming soon*
 - Unauthorized edits **are not** permitted (user1 cannot make edits to user2's profile)
 - Invalid data (e.g., invalid email address) **is not** accepted
 
-### 4. Registering user accounts
+### 4. Delete a user account
 - 
 
-### 5. Registering user accounts
+### 5. Make posts tagged with Topics
 - 
 
-### 6. Registering user accounts
+### 6. Follow or unfollow a [User] or [Topic]
 - 
 
-### 7. Registering user accounts
+### 7. Show the timeline for the logged-in user
 - 
 
-### 8. Registering user accounts
+### 8. Engage with a post
 - 
 
-### 9. Registering user accounts
+### 9A. Show the profile of a selected user to any user (logged-in or not)
 - 
 
-### 10. Registering user accounts
+### 9B. Show a user's userline when we click on timeline from the profile page (only logged-in viewers)
 - 
 
-### 11. Registering user accounts
+### 10. Basic responsive user interface
+- 
+
+### 11. Aesthetics, compatibility, and accessibility
 - 
