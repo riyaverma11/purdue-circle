@@ -6,7 +6,7 @@ Hi! Thanks for checking out Purdue Circle. This project was created using **Mong
 Here's a link to our demo: *coming soon*
 
 
-## Features of our app
+## Features of app
 ### 1. Registering user accounts
 - Each user needs to have a valid email and a unique username
 - An email **cannot** be associated with two usernames
@@ -24,10 +24,17 @@ Here's a link to our demo: *coming soon*
 - Invalid data (e.g., invalid email address) **is not** accepted
 
 ### 4. Delete a user account
-- 
+- An authenticated (logged-in) user is able to delete their account
+- All associated data is deleted too
 
 ### 5. Make posts tagged with Topics
-- 
+- A logged-in user is able to make posts - text/image/url
+- The length of hte post is restricted to 500 characters
+- The user who creates the post (author) is able to choose a topic before posting; each post can have exactly one Topic
+- A new Topic is created simply by typing the Topic name while creating the post. Once created, a Topic has no concept of moderation; anyone can choose to tag their post with it
+- If a user navigates to a Topic, all posts tagged with that Topic should be displayed
+- All users that follow the author of a post should eb able to see the post in their timeline
+- Users should be able to post anonymously
 
 ### 6. Follow or unfollow a [User] or [Topic]
 - 
