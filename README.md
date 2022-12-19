@@ -37,13 +37,22 @@ Here's a link to our demo: *coming soon*
 - Users should be able to post anonymously
 
 ### 6. Follow or unfollow a [User] or [Topic]
-- 
+- A logged-in user (user1) is able to follow/unfollow other users (user2) which will allow user1 to see/un-see user2's posts on user1's timeline
+- user1, at any time, is able to choose to follow/unfollow any topic; posts made under that topic should appear or disappear from their timeline
+- If user2 makes a post on any of the topics that user1 is following, then user1 should see the post in their timeline
+- If user1 does not follow a topic associated with user2's post, then user2's posts tagged with that topic **will not** show up on user1's timeline unless user1 is following user2
+- user1 is able to view a list of all the users and topics they follow; from each lsit they are able to unfollow a user or topic
 
 ### 7. Show the timeline for the logged-in user
-- 
+- The timeline for a logged-in user is able to see all the posts that have been posted in the topics they follow, and the posts by the users that they follow
+- Recent posts are shown before older posts
+- Posts are formatted in a way that displays relevant information (author's username, topic, posting time)
 
 ### 8. Engage with a post
-- 
+- Logged-in user is able to engage with another user's post by:
+  - Saving the post
+  - Liking the post
+  - Commenting on the post
 
 ### 9A. Show the profile of a selected user to any user (logged-in or not)
 - 
