@@ -78,5 +78,5 @@ Link to our demo: *coming soon*
 ### 11. Aesthetics, compatibility, and accessibility
 - Supports at least two various color schemes in the UI (dark and light modes)
 - Ensures compatibility of our client on mobile and desktop
-- Applicatoin meets the Web Content Accessibility Guidelines Verson 2.0 defined by the World-Wide Web Consortium
+- Application meets the Web Content Accessibility Guidelines Version 2.0 defined by the World-Wide Web Consortium
 - Continuous scrolling on the timeline to show all the posts
